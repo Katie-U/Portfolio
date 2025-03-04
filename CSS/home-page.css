@@ -1,0 +1,63 @@
+#firstImg{
+    height : 500px;
+}
+
+div.aboveTheFold {
+    display : flex; 
+    padding-left : 40px;
+    padding-right : 40px;
+    justify-content : space-between;
+    background-color : #EAAE5E;
+}
+
+h1 {
+    width : 730px;
+    font-size : 40px;
+}
+
+nav {
+    display : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    align-items : baseline;
+    height : 90px;
+    padding-right : 20px;
+    padding-left : 10px;
+    font-size : 20px;
+    background-color : #EAAE5E;
+}
+
+#rightNav {
+    width : 400px;
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+}
+
+#homeButton {
+    width : 80px;
+    height : 80px;
+
+}
+
+img.buildings {
+    height : 100px;
+    width : 140px;
+}
+
+#rightFold {
+    display : flex;
+    flex-direction : column;
+    justify-content : space-between;
+    padding-top : 110px;
+}
+
+#leftFold {
+    display : flex;
+    justify-content : baseline;
+}
+
+div.buildings {
+    display : flex;
+    justify-content : space-between;
+}
