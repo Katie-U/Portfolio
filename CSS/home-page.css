@@ -24,7 +24,12 @@ nav {
     padding-right : 20px;
     padding-left : 10px;
     font-size : 20px;
-    background-color : #EAAE5E;
+    background-color : #E47F2F;
+}
+
+#leftNav {
+    display : flex;
+    align-items : baseline;
 }
 
 #rightNav {
@@ -60,4 +65,17 @@ img.buildings {
 div.buildings {
     display : flex;
     justify-content : space-between;
+}
+
+div.undergraduate {
+    display : flex;
+    justify-content : space-between;
+    padding-left : 40px;
+    padding-right : 40px;
+    background-color : #EAAE5E;
+}
+
+#undergradPhoto {
+    height : 500px;
+    width : 450px;
 }
