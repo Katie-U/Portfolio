@@ -3,23 +3,25 @@
 }
 
 div.aboveTheFold {
+    padding-top : 60px;
     display : flex; 
-    padding-left : 40px;
-    padding-right : 40px;
+    padding-left : 70px;
+    padding-right : 200px;
+    padding-bottom: 60px;
     justify-content : space-between;
     background-color : #EAAE5E;
 }
 
 h1 {
-    width : 730px;
-    font-size : 40px;
+    width : 850px;
+    font-size : 60px;
 }
 
 nav {
     display : flex;
     flex-direction : row;
     justify-content: space-between;
-    align-items : baseline;
+    align-items : flex-end;
     height : 90px;
     padding-right : 20px;
     padding-left : 10px;
@@ -68,14 +70,41 @@ div.buildings {
 }
 
 div.undergraduate {
+    padding-top : 60px;
+    padding-bottom : 60px;
     display : flex;
     justify-content : space-between;
-    padding-left : 40px;
-    padding-right : 40px;
+    padding-left : 70px;
+    padding-right : 70px;
     background-color : #EAAE5E;
 }
 
 #undergradPhoto {
     height : 500px;
     width : 450px;
+}
+
+h2 {
+    font-size : 40px;
+}
+
+#text1 {
+    width : 1000px;
+    font-size : 25px;
+}
+
+#gradPhoto {
+    height : 600x;
+    width : 540px;
+}
+
+div.graduate {
+    padding-top : 60px;
+    padding-bottom : 60px;
+    display : flex;
+    flex-direction : row-reverse;
+    justify-content : space-between;
+    padding-left : 70px;
+    padding-right : 70px;
+    background-color : #EAAE5E;
 }
