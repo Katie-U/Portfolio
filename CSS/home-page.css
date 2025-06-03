@@ -17,7 +17,23 @@ div.aboveTheFold {
 
 #rightFold {
     display : flex;
+    flex-direction : column;
     width : 50%;
+}
+
+#personalLinks {
+    display : flex;
+    align-items : center;
+}
+
+#linkedinLogo {
+    height : 60px;
+    width : 60px;
+}
+
+#githubLogo {
+    height : 40px;
+    width : 40px;
 }
 
 h1 {
@@ -34,6 +50,15 @@ nav {
     padding-left : 10px;
     font-size : 20px;
     background-color : #307816;
+}
+
+a.navLink {
+    text-decoration : none;
+    color : black;
+}
+
+a.navLink:hover {
+    font-weight : bold; 
 }
 
 #navHeaders {
@@ -80,6 +105,34 @@ div.graduate {
 
 #leftUndergrad {
     width : 60%;
+    display: flex;
+    flex-direction : column;
 }
 
+div.projectSection {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-around;
+}
 
+div.project {
+    margin: 5px;
+    border: 1px solid black;
+    float: left;
+    width: 225px;
+  }
+
+  #project2 {
+    width : 384px;
+  }
+  
+  div.projecct:hover {
+    border: 1px solid black;
+  }
+  
+ 
+  
+  div.descript {
+    padding: 15px;
+    text-align: center;
+  }

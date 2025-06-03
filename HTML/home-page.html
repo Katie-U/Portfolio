@@ -10,9 +10,15 @@
 
     <nav>
         <div id = "navHeaders">
-            <p>Undergraduate</p>
-            <p>Graduate</p>
-            <p>About Me</p>
+            <a class = "navLink" href = "#undergradDiv">
+                <p>Undergraduate</p>
+            </a>
+            <a class = "navLink" href = "#gradDiv">
+                <p>Graduate</p>
+            </a>
+            <a class = "navLink" href = "#aboutMeDiv">
+                <p>About Me</p>
+            </a>
         </div>
     </nav>
 
@@ -26,15 +32,19 @@
                     Monster problems need monster solutions and I'm the researcher with
                      the qualitative and quantitative skills to find them.
                 </h1>
-              <!--  <div class = "buildings">
-                    <img class = "buildings" src ="../images/buildings.jpg">
-                    <img class = "buildings" src = "../images/buildings.jpg">
+                <div id = "personalLinks">
+                    <a href = "https://www.github.com/Katie-U">
+                        <img class = "linkPhoto" id = "githubLogo" src = "../images/githubLogo.png">
+                    </a>
+                    <a href = "https://www.linkedin.com/in/katie-ulinski">
+                        <img class = "linkPhoto" id = "linkedinLogo" src = "../images/linkedInLogo.png">
+                    </a>
                 </div>
-                -->
+
             </div>
         </div>
 
-        <div class = "undergraduate">
+        <div id = "undergradDiv" class = "undergraduate">
             <div id = "leftUndergrad">
                 <h2>
                     Undergraduate Education: Michigan Technological University
@@ -44,15 +54,31 @@
                     also did a lot outside of academics. I worked in two research labs focusing on computer science education; I helped teach 
                     introduction computer science courses; I was president of the Association of Psychology Students and The Quiz Bowl Club; 
                     and I was the Varsity Esports Team Statistician. See some of the projects I worked on below:
-
                 </p>
+                <br>
+                <div class = "projectSection">
+                    <div class = "project">
+                        <a href = "project-description.html?project=hide">
+                            <img class = "projectPhoto" src = "../images/hideLogo.png">
+                        </a>
+                        <div class = "descript">Enterprise: HIDE</div>
+                    </div>
+
+                    <div class = "project" id = "project2">
+                        <a href = "">
+                            <img class = "projectPhoto" src = "../images/modeler 1.jpg" height = "225px">
+                        </a>
+                        <div class = "descript">Modeler</div>
+                    </div>
+
+                </div>
             </div>
             <div id = "rightUndergrad">
                 <img id = "undergradPhoto" src = "../images/esportsPhoto.JPEG">
             </div>
         </div>
 
-        <div class = "graduate">
+        <div id = "gradDiv" class = "graduate">
             <div id = "leftUndergrad">
                 <h2>
                     Graduate Education: Carnegie Mellon University

@@ -1,0 +1,18 @@
+
+body {
+    background-color : #F5F5F5;
+}
+
+
+p.introduction {
+    font-family : "optima", sans-serif;
+    font-size : 25px;
+    width : 60%;
+}
+
+div.introduction {
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    justify-content : space-around;
+}
