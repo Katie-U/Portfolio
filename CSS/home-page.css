@@ -2,100 +2,72 @@
     height : 500px;
 }
 
+div {
+    background-color: #F5F5F5;
+    font-family : "optima", sans-serif;
+}
+
 div.aboveTheFold {
     padding-top : 60px;
     display : flex; 
-    padding-left : 70px;
-    padding-right : 200px;
     padding-bottom: 60px;
-    justify-content : space-between;
-    background-color : #EAAE5E;
+    align-items : center;
+    justify-content : space-evenly;
+}
+
+#rightFold {
+    display : flex;
+    width : 50%;
 }
 
 h1 {
-    width : 850px;
     font-size : 60px;
 }
 
 nav {
     display : flex;
     flex-direction : row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items : flex-end;
     height : 90px;
     padding-right : 20px;
     padding-left : 10px;
     font-size : 20px;
-    background-color : #E47F2F;
+    background-color : #307816;
 }
 
-#leftNav {
-    display : flex;
-    align-items : baseline;
-}
-
-#rightNav {
+#navHeaders {
     width : 400px;
     display : flex;
     flex-direction : row;
     justify-content : space-between;
+    background-color : #307816;
 }
 
-#homeButton {
-    width : 80px;
-    height : 80px;
-
-}
-
-img.buildings {
-    height : 100px;
-    width : 140px;
-}
-
-#rightFold {
-    display : flex;
-    flex-direction : column;
-    justify-content : space-between;
-    padding-top : 110px;
-}
-
-#leftFold {
-    display : flex;
-    justify-content : baseline;
-}
-
-div.buildings {
-    display : flex;
-    justify-content : space-between;
-}
 
 div.undergraduate {
     padding-top : 60px;
     padding-bottom : 60px;
     display : flex;
-    justify-content : space-between;
-    padding-left : 70px;
-    padding-right : 70px;
-    background-color : #EAAE5E;
+    justify-content : space-evenly;
+   
 }
 
 #undergradPhoto {
-    height : 500px;
-    width : 450px;
+    width : 300px;
+    height : 300px;
 }
 
 h2 {
     font-size : 40px;
 }
 
-#text1 {
-    width : 1000px;
+p.text {
     font-size : 25px;
 }
 
 #gradPhoto {
-    height : 600x;
-    width : 540px;
+    width : 400px;
 }
 
 div.graduate {
@@ -103,8 +75,11 @@ div.graduate {
     padding-bottom : 60px;
     display : flex;
     flex-direction : row-reverse;
-    justify-content : space-between;
-    padding-left : 70px;
-    padding-right : 70px;
-    background-color : #EAAE5E;
+    justify-content : space-evenly;
 }
+
+#leftUndergrad {
+    width : 60%;
+}
+
+
