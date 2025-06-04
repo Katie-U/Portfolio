@@ -140,3 +140,9 @@ div.project {
     padding: 15px;
     text-align: center;
   }
+
+  #homeLogo {
+    text-decoration: none;
+    background-color :#307816;
+    border : none;
+  }
