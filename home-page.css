@@ -69,7 +69,7 @@ a.navLink:hover {
     width : 400px;
     display : flex;
     flex-direction : row;
-    justify-content : space-between;
+    justify-content : space-evenly;
     background-color : #307816;
 }
 
@@ -146,3 +146,20 @@ div.project {
     background-color :#307816;
     border : none;
   }
+
+  div.aboutme {
+    padding-top : 60px;
+    padding-bottom : 60px;
+    display : flex;
+    justify-content : space-evenly;
+}
+
+div.quote {
+    display : flex;
+    
+}
+
+#quote {
+    font-style : italic;
+    padding-right : 5px;
+}
