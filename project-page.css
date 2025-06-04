@@ -30,3 +30,8 @@ div.images {
     align-items : stretch;
 }
 
+#gameCards {
+    display : flex;
+    flex-direction: column;
+    justify-content : space-evenly;
+}
