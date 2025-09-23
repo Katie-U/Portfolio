@@ -35,3 +35,7 @@ div.images {
     flex-direction: column;
     justify-content : space-evenly;
 }
+
+#odd {
+    flex-direction: row-reverse;
+}
