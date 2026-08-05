@@ -1,5 +1,3 @@
-"""Flask application that serves the portfolio site."""
-
 from __future__ import annotations
 
 import os
