@@ -22,9 +22,11 @@ lerna-debug.log*
 Thumbs.db
 Desktop.ini
 
-# Editor-specific files
+# Editor / assistant tooling
 .vscode/
 .idea/
+.claude/
+CLAUDE.md
 *.suo
 *.ntvs*
 *.njsproj
@@ -40,6 +42,7 @@ venv/
 *.env
 Pipfile.lock
 poetry.lock
+.pytest_cache/
 
 # Coverage and test reports
 coverage/
@@ -75,5 +78,5 @@ cypress/screenshots/
 *.pyo
 *.pyd
 
-# Ignore static assets in React builds
-static/
+# uv
+.venv/
