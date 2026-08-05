@@ -1,0 +1,18 @@
+[project]
+name = "portfolio"
+version = "0.1.0"
+description = "Katie Ulinski's portfolio site, served by Flask."
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.1.0",
+    "gunicorn>=23.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

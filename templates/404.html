@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project-page.css') }}"/>
+{% endblock %}
+
+{% block content %}
+        <h1>Page Not Found</h1>
+        <div class = "projects">
+            <p class = "projects">
+                Sorry, that page doesn't exist. Head back to the
+                <a href = "{{ url_for('index') }}">home page</a> to see the rest of the portfolio.
+            </p>
+        </div>
+{% endblock %}

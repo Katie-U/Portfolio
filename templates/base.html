@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="{{ url_for('static', filename='images/home-icon.png') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home-page.css') }}"/>
+        {% block styles %}{% endblock %}
+        <title>{% block title %}Portfolio{% endblock %}</title>
+    </head>
+
+    <body>
+        <nav>
+            <div>
+                <a id = "homeLogo" href = "{{ url_for('index') }}">
+                    <img class = "homePhoto" src = "{{ url_for('static', filename='images/home-icon.png') }}" height = "60px" alt = "Home">
+                </a>
+            </div>
+            <div id = "navHeaders">
+                <a class = "navLink" href = "{{ url_for('index') }}#undergradDiv">
+                    <p>Undergraduate</p>
+                </a>
+                <a class = "navLink" href = "{{ url_for('index') }}#gradDiv">
+                    <p>Graduate</p>
+                </a>
+                <!--
+                <a class = "navLink" href = "{{ url_for('index') }}#aboutMeDiv">
+                    <p>About Me</p>
+                </a>
+                -->
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    </body>
+
+</html>

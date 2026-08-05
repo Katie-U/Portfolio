@@ -1,0 +1,9 @@
+# Railway runs the Procfile through a Linux shell, so it must stay LF.
+Procfile text eol=lf
+
+*.py   text
+*.html text
+*.css  text
+*.js   text
+*.toml text
+*.md   text

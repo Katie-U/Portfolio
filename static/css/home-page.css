@@ -62,7 +62,11 @@ a.navLink {
 }
 
 a.navLink:hover {
-    font-weight : bold; 
+    font-weight : bold;
+}
+
+a.navLink.active {
+    font-weight : bold;
 }
 
 #navHeaders {
