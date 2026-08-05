@@ -63,6 +63,75 @@ $env:PORT=8000; uv run python app.py  # PowerShell
 `gunicorn` (in the `Procfile`) does not run on Windows. It is only used on
 Railway; locally always use `uv run python app.py`.
 
+## Saving and publishing a change
+
+The everyday loop, from an edited file to a live site:
+
+```bash
+# 1. See what you changed
+git status
+
+# 2. If you added or replaced anything in static/images/ or static/video/,
+#    regenerate the compressed copies first (see "Images and video" below)
+uv run --group images python scripts/convert_images.py
+uv run python scripts/compress_videos.py
+
+# 3. Make sure nothing is broken
+uv run pytest
+
+# 4. Stage everything you changed
+git add -A
+
+# 5. Commit with a message describing the change
+git commit -m "Shorten the capstone write-up"
+
+# 6. Send it to GitHub
+git push
+```
+
+Then **open Railway and press Deploy** — pushes do not deploy on their own here.
+See [Pushes do not auto-deploy](#pushes-do-not-auto-deploy) for why and how to
+fix it permanently.
+
+### Useful variations
+
+```bash
+git add templates/index.html          # stage one file instead of everything
+git diff                              # review unstaged changes before adding
+git diff --cached                     # review what is already staged
+git restore templates/index.html      # throw away edits to one file
+git log --oneline -10                 # recent history
+```
+
+### Working on a branch instead
+
+Safer for anything larger than a typo, and it is how changes have been merged
+into this repo before:
+
+```bash
+git checkout -b shorter-capstone-text   # start a branch off main
+# ...edit, test, add, commit as above...
+git push -u origin shorter-capstone-text
+```
+
+Then open a pull request on GitHub and merge it. Afterwards:
+
+```bash
+git checkout main
+git pull
+```
+
+### Two things that catch people out here
+
+- **`git add` silently ignores the originals.** `static/images/` and
+  `static/video/` are gitignored, so `git add static/images/new-photo.jpg` does
+  nothing at all — no error, no warning. Only the compressed copies in
+  `static/images-webp/` and `static/video-web/` get committed, which is why
+  step 2 above has to happen *before* step 4. If a new image is missing from the
+  live site, this is almost always why.
+- **Always `git pull` before starting.** This repo has more than one person
+  pushing to it, and pulling first avoids merge conflicts later.
+
 ## Tests
 
 ```bash
