@@ -23,7 +23,7 @@
             or changes in the relationships; and a moving or changing simulation that is created by the system
             to display the relationships as defined.
         </p>
-         <img id = "modeler1" src = "{{ url_for('static', filename='images/modeler-1.jpg') }}" width = "500px" alt = "Modeler interface">
+         <img id = "modeler1" src = "{{ url_for('static', filename='images-webp/modeler-1.webp') }}" width = "500px" alt = "Modeler interface" decoding = "async">
         </div>
         <div class = "projects">
         <p class = "projects">
@@ -37,7 +37,7 @@
             doing. It was not enough for them to just mindlessly experience the simulation, but to reflect on the
             process.
         </p>
-            <img id = "modeler2" src = "{{ url_for('static', filename='images/modeler-2.jpg') }}" width = "500px" alt = "Modeler interface">
+            <img id = "modeler2" src = "{{ url_for('static', filename='images-webp/modeler-2.webp') }}" width = "500px" alt = "Modeler interface" loading = "lazy" decoding = "async">
         </div>
          <div class = "projects">
         <p class = "projects">
@@ -48,8 +48,12 @@
             medium that could be shown to other people who had no understanding of the design or development
             process, such as professors from other departments or high school teachers.
         </p>
-        <video width = "600px" controls>
-            <source src = "{{ url_for('static', filename='video/modeler-concept-animation.mp4') }}" type = "video/mp4">
+        <!-- preload="none" plus a poster means the page costs nothing until
+             someone actually presses play. -->
+        <video width = "600px" controls preload = "none"
+               poster = "{{ url_for('static', filename='video-web/modeler-concept-animation.webp') }}">
+            <source src = "{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}" type = "video/mp4">
+            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}">Download it instead.</a>
         </video>
        </div>
 {% endblock %}

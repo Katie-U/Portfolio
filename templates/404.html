@@ -4,6 +4,9 @@
 
 {% block styles %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project-page.css') }}"/>
+        <!-- A 404 has no content worth ranking, and every missing URL renders the
+             same page, so keep it out of the index entirely. -->
+        <meta name="robots" content="noindex, follow">
 {% endblock %}
 
 {% block content %}

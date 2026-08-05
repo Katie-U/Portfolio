@@ -12,6 +12,11 @@ dependencies = [
 dev = [
     "pytest>=8.3.0",
 ]
+# Only needed to run scripts/convert_images.py. Kept out of the default groups so
+# the Railway build does not install Pillow into the runtime image.
+images = [
+    "pillow>=11.0.0",
+]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]

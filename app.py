@@ -1,11 +1,31 @@
 from __future__ import annotations
 
+import mimetypes
 import os
 from dataclasses import dataclass
+from urllib.parse import urljoin
 
-from flask import Flask, abort, redirect, render_template, url_for
+from flask import Flask, Response, abort, redirect, render_template, request, url_for
+
+# Windows has no registry entry for WebP, so the dev server hands these out as
+# application/octet-stream. Register it up front rather than depending on
+# whatever the host OS happens to know.
+mimetypes.add_type("image/webp", ".webp")
 
 app = Flask(__name__)
+
+OWNER_NAME = "Katie Ulinski"
+SITE_NAME = f"{OWNER_NAME} — Portfolio"
+SITE_DESCRIPTION = (
+    "Portfolio of Katie Ulinski, a Human-Computer Interaction masters student at "
+    "Carnegie Mellon University working in UX research and interaction design."
+)
+
+# Absolute URLs are required in sitemaps, canonical tags and Open Graph tags.
+# Set SITE_URL in the Railway dashboard to the site's real domain; without it we
+# fall back to whichever host the request came in on, which is right for local
+# development but lets duplicate hostnames each claim to be canonical.
+CONFIGURED_SITE_URL = os.environ.get("SITE_URL", "").rstrip("/")
 
 
 @dataclass(frozen=True)
@@ -17,6 +37,7 @@ class Project:
     section: str
     template: str
     thumbnail: str
+    description: str
     thumbnail_height: str | None = None
     card_id: str | None = None
 
@@ -27,14 +48,24 @@ PROJECTS: tuple[Project, ...] = (
         title="Enterprise: HIDE",
         section="undergrad",
         template="projects/hide.html",
-        thumbnail="hide-logo.png",
+        thumbnail="hide-logo.webp",
+        description=(
+            "Human factors and usability work on the Humane Interface Design Enterprise "
+            "at Michigan Tech: a class scheduling prototype for the computer science "
+            "department and wireframes for a legal paper serving platform."
+        ),
     ),
     Project(
         slug="modeler",
         title="Modeler",
         section="undergrad",
         template="projects/modeler.html",
-        thumbnail="modeler-1.jpg",
+        thumbnail="modeler-1.webp",
+        description=(
+            "User flow and interface design for Modeler, a tool that builds computational "
+            "thinking skills in non-computer-science classrooms by letting students "
+            "diagram, measure and simulate the relationships in a topic."
+        ),
         thumbnail_height="225px",
         card_id="project2",
     ),
@@ -43,7 +74,12 @@ PROJECTS: tuple[Project, ...] = (
         title="Capstone: South Fayette",
         section="grad",
         template="projects/capstone.html",
-        thumbnail="south-fayette-logo.png",
+        thumbnail="south-fayette-logo.webp",
+        description=(
+            "Carnegie Mellon MHCI capstone with South Fayette High School: Stack Builder, "
+            "a project aimed at increasing student autonomy and internal motivation so "
+            "students can find their own path after high school."
+        ),
         thumbnail_height="224px",
     ),
     Project(
@@ -51,7 +87,12 @@ PROJECTS: tuple[Project, ...] = (
         title="Cross Stitch Pattern Website",
         section="grad",
         template="projects/cross-stitch.html",
-        thumbnail="prototype-1-1.jpg",
+        thumbnail="prototype-1-1.webp",
+        description=(
+            "A web app for designing block-based cross stitch patterns, with photo "
+            "backgrounds and the official DMC colour palette, designed through three "
+            "Figma prototypes and then built."
+        ),
         thumbnail_height="210px",
     ),
     Project(
@@ -59,7 +100,12 @@ PROJECTS: tuple[Project, ...] = (
         title="Transformational Games",
         section="grad",
         template="projects/transformational-games.html",
-        thumbnail="carnegie-mellon.png",
+        thumbnail="carnegie-mellon.webp",
+        description=(
+            "Designing physical games that elicit change in the player, on two-week "
+            "iteration cycles, including a team game about holding difficult "
+            "conversations across differing perspectives on climate issues."
+        ),
         thumbnail_height="225px",
     ),
 )
@@ -81,6 +127,32 @@ def projects_in(section: str) -> list[Project]:
     return [project for project in PROJECTS if project.section == section]
 
 
+def site_url() -> str:
+    """The site's base URL, with a trailing slash."""
+    return CONFIGURED_SITE_URL + "/" if CONFIGURED_SITE_URL else request.url_root
+
+
+def absolute_url(path: str) -> str:
+    return urljoin(site_url(), path)
+
+
+@app.context_processor
+def seo_defaults():
+    """Values every template's <head> needs.
+
+    Templates override ``page_description`` and ``page_image`` by passing them to
+    ``render_template``; the canonical URL is always the current path, so that
+    query strings and the legacy hostnames never split a page's ranking.
+    """
+    return {
+        "site_name": SITE_NAME,
+        "owner_name": OWNER_NAME,
+        "canonical_url": absolute_url(request.path),
+        "page_description": SITE_DESCRIPTION,
+        "page_image": absolute_url(url_for("static", filename="images-webp/hero.webp")),
+    }
+
+
 @app.get("/")
 def index():
     return render_template(
@@ -95,7 +167,14 @@ def project(slug: str):
     selected = PROJECTS_BY_SLUG.get(slug)
     if selected is None:
         abort(404)
-    return render_template(selected.template, project=selected)
+    return render_template(
+        selected.template,
+        project=selected,
+        page_description=selected.description,
+        page_image=absolute_url(
+            url_for("static", filename=f"images-webp/{selected.thumbnail}")
+        ),
+    )
 
 
 @app.get("/index.html")
@@ -109,6 +188,27 @@ def legacy_project(page: str):
     if slug is None:
         abort(404)
     return redirect(url_for("project", slug=slug), code=301)
+
+
+@app.get("/robots.txt")
+def robots():
+    body = render_template("robots.txt", sitemap_url=absolute_url("/sitemap.xml"))
+    return Response(body, mimetype="text/plain")
+
+
+@app.get("/sitemap.xml")
+def sitemap():
+    """Every indexable URL on the site.
+
+    Generated from PROJECTS rather than hand-maintained, so adding a project
+    cannot leave the sitemap stale. The legacy .html redirects are deliberately
+    left out: a sitemap should only list canonical URLs.
+    """
+    urls = [absolute_url(url_for("index"))] + [
+        absolute_url(url_for("project", slug=project.slug)) for project in PROJECTS
+    ]
+    body = render_template("sitemap.xml", urls=urls)
+    return Response(body, mimetype="application/xml")
 
 
 @app.get("/healthz")

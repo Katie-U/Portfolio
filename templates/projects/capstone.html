@@ -20,7 +20,7 @@
             help them find the best path forward for their future, whether that
             be college or straight into the job force.
         </p>
-         <img id = "capstone1" src = "{{ url_for('static', filename='images/capstone-group-photo.jpg') }}" width = "480px" alt = "The capstone team">
+         <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/capstone-group-photo.webp') }}" width = "480px" alt = "The capstone team" decoding = "async">
         </div>
 <div class = "projects" id = "odd">
         <p class = "projects">
@@ -34,7 +34,7 @@
             with our clients and are using their feedback to direct the next stage of development
             for this project.
         </p>
-         <img id = "capstone2" src = "{{ url_for('static', filename='images/capstone-research.jpeg') }}" width = "500px" alt = "Research session with stakeholders">
+         <img id = "capstone2" src = "{{ url_for('static', filename='images-webp/capstone-research.webp') }}" width = "500px" alt = "Research session with stakeholders" loading = "lazy" decoding = "async">
         </div>
 <div class = "projects">
         <p class = "projects">
@@ -44,8 +44,8 @@
             quickly and to gain insights for specific questions and problems. We were able to use
             the information that we learned from the prototyping phase to create our final solution.
         </p>
-         <img id = "capstone3" src = "{{ url_for('static', filename='images/stack-builder-poster.jpg') }}" width = "250px" alt = "Stack Builder poster">
-         <img id = "capstone4" src = "{{ url_for('static', filename='images/failure-cards.jpg') }}" height = "250px" alt = "Failure cards prototype">
+         <img id = "capstone3" src = "{{ url_for('static', filename='images-webp/stack-builder-poster.webp') }}" width = "250px" alt = "Stack Builder poster" loading = "lazy" decoding = "async">
+         <img id = "capstone4" src = "{{ url_for('static', filename='images-webp/failure-cards.webp') }}" height = "250px" alt = "Failure cards prototype" loading = "lazy" decoding = "async">
         </div>
 
         <div class = "projects" id = "odd">
@@ -60,8 +60,12 @@
               general event information. I also helped create an AI recommendation system that
               provides students with recommendations based on their interests and previous experiences.
         </p>
-        <video width = "600px" controls>
-            <source src = "{{ url_for('static', filename='video/stacks-demo.mp4') }}" type = "video/mp4">
+        <!-- preload="none" plus a poster means the page costs nothing until
+             someone actually presses play. -->
+        <video width = "600px" controls preload = "none"
+               poster = "{{ url_for('static', filename='video-web/stacks-demo.webp') }}">
+            <source src = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}" type = "video/mp4">
+            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}">Download it instead.</a>
         </video>
         </div>
 {% endblock %}

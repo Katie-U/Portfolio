@@ -31,8 +31,8 @@
             to come up with the best solutions to different problems.
         </p>
         <div id = "gameCards">
-         <img id = "gamecard1" src = "{{ url_for('static', filename='images/game-cards.jpg') }}" height = "300px" alt = "Game cards">
-         <img id = "gamecard2" src = "{{ url_for('static', filename='images/game-problems.jpg') }}" height = "300px" alt = "Game problem cards">
+         <img id = "gamecard1" src = "{{ url_for('static', filename='images-webp/game-cards.webp') }}" height = "300px" alt = "Game cards" decoding = "async">
+         <img id = "gamecard2" src = "{{ url_for('static', filename='images-webp/game-problems.webp') }}" height = "300px" alt = "Game problem cards" loading = "lazy" decoding = "async">
          </div>
     </div>
 {% endblock %}

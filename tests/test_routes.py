@@ -8,7 +8,7 @@ import pytest
 from app import PROJECTS, app
 
 STATIC_ROOT = Path(app.root_path) / "static"
-ASSET_PATTERN = re.compile(r'(?:src|href)\s*=\s*"(/static/[^"]+)"')
+ASSET_PATTERN = re.compile(r'(?:src|href|poster)\s*=\s*"(/static/[^"]+)"')
 
 
 @pytest.fixture
@@ -58,3 +58,52 @@ def test_unknown_page_returns_404(client):
 
 def test_healthcheck(client):
     assert client.get("/healthz").get_json() == {"status": "ok"}
+
+
+def test_robots_txt(client):
+    response = client.get("/robots.txt")
+    assert response.status_code == 200
+    assert response.mimetype == "text/plain"
+
+    body = response.get_data(as_text=True)
+    assert "User-agent: *" in body
+    assert "Sitemap: http://localhost/sitemap.xml" in body
+
+
+def test_sitemap_lists_every_page(client):
+    response = client.get("/sitemap.xml")
+    assert response.status_code == 200
+    assert response.mimetype == "application/xml"
+
+    body = response.get_data(as_text=True)
+    assert "<loc>http://localhost/</loc>" in body
+    for project in PROJECTS:
+        assert f"<loc>http://localhost/projects/{project.slug}</loc>" in body
+
+    # Redirects and the healthcheck are not canonical URLs and must stay out.
+    assert ".html" not in body
+    assert "healthz" not in body
+
+
+@pytest.mark.parametrize("path", page_paths())
+def test_page_has_seo_head(client, path):
+    html = client.get(path).get_data(as_text=True)
+    assert f'<link rel="canonical" href="http://localhost{path}">' in html
+    assert '<meta name="description" content="' in html
+    assert '<meta property="og:image" content="http://localhost/static/' in html
+
+
+def test_project_pages_have_their_own_description(client):
+    descriptions = {
+        client.get(f"/projects/{project.slug}")
+        .get_data(as_text=True)
+        .split('<meta name="description" content="')[1]
+        .split('">')[0]
+        for project in PROJECTS
+    }
+    assert len(descriptions) == len(PROJECTS), "project descriptions are not unique"
+
+
+def test_404_is_not_indexable(client):
+    html = client.get("/projects/nope").get_data(as_text=True)
+    assert '<meta name="robots" content="noindex, follow">' in html

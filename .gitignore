@@ -80,3 +80,15 @@ cypress/screenshots/
 
 # uv
 .venv/
+
+# Full-size originals. Only the compressed copies in static/images-webp and
+# static/video-web are served, so shipping ~96 MB of masters to Railway on every
+# deploy achieves nothing. Keep these locally (and backed up somewhere off this
+# machine) -- they are the inputs to scripts/convert_images.py and
+# scripts/compress_videos.py, and are not recoverable from a fresh clone.
+static/images/*
+static/video/
+
+# ...except the favicon, which is the one raster file served straight from the
+# originals folder because Safari will not render a WebP favicon.
+!static/images/home-icon.png

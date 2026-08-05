@@ -19,7 +19,7 @@
             team, laid out here.
         </p>
 
-        <img id = "hideGroupPhoto" src = "{{ url_for('static', filename='images/hide-group.jpg') }}" height = "400px" alt = "The HIDE enterprise team">
+        <img id = "hideGroupPhoto" src = "{{ url_for('static', filename='images-webp/hide-group.webp') }}" height = "400px" alt = "The HIDE enterprise team" decoding = "async">
     </div>
 
     <h2>CS Scheduler</h2>
@@ -40,7 +40,7 @@
         it would look like to see multiple professors at the same time. This prototype is an early design for the
         project. It is not the final design and I was moved to a different team before it was finished.
     </p>
-    <img id = "csScheduler" src = "{{ url_for('static', filename='images/cs-scheduler-prototype.jpg') }}" width = "700px" height = "400px" alt = "CS scheduler prototype">
+    <img id = "csScheduler" src = "{{ url_for('static', filename='images-webp/cs-scheduler-prototype.webp') }}" width = "700px" height = "400px" alt = "CS scheduler prototype" loading = "lazy" decoding = "async">
     </div>
 
     <h2>Legal Paper Serving Platform</h2>
@@ -54,9 +54,9 @@
         were finalized.
         </p>
         <div class = "images">
-        <img id = "yoopapers1" src = "{{ url_for('static', filename='images/yoopapers-computer.jpg') }}" width = "400px" alt = "Desktop wireframe">
-        <img id = "yoopapers2" src = "{{ url_for('static', filename='images/yoopapers-phone-1.jpg') }}" width = "400px" alt = "Mobile wireframe">
-        <img id = "yoopapers3" src = "{{ url_for('static', filename='images/yoopapers-phone-2.jpg') }}" width = "400px" alt = "Mobile wireframe">
+        <img id = "yoopapers1" src = "{{ url_for('static', filename='images-webp/yoopapers-computer.webp') }}" width = "400px" alt = "Desktop wireframe" loading = "lazy" decoding = "async">
+        <img id = "yoopapers2" src = "{{ url_for('static', filename='images-webp/yoopapers-phone-1.webp') }}" width = "400px" alt = "Mobile wireframe" loading = "lazy" decoding = "async">
+        <img id = "yoopapers3" src = "{{ url_for('static', filename='images-webp/yoopapers-phone-2.webp') }}" width = "400px" alt = "Mobile wireframe" loading = "lazy" decoding = "async">
     </div>
     </div>
 {% endblock %}

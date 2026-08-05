@@ -3,17 +3,36 @@
 
     <head>
         <meta charset="UTF-8">
+
+        <title>{% block title %}Portfolio{% endblock %} | {{ owner_name }}</title>
+        <meta name="description" content="{{ page_description }}">
+        <meta name="author" content="{{ owner_name }}">
+
+        <!-- One address per page, so the Railway subdomain, a custom domain and
+             any ?query variants all credit the same URL. -->
+        <link rel="canonical" href="{{ canonical_url }}">
+
+        <!-- Link previews on LinkedIn, Slack, iMessage and the rest. -->
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="{{ site_name }}">
+        <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+        <meta property="og:description" content="{{ page_description }}">
+        <meta property="og:url" content="{{ canonical_url }}">
+        <meta property="og:image" content="{{ page_image }}">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <!-- PNG rather than WebP: Safari still will not render a WebP favicon. -->
         <link rel="icon" href="{{ url_for('static', filename='images/home-icon.png') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home-page.css') }}"/>
         {% block styles %}{% endblock %}
-        <title>{% block title %}Portfolio{% endblock %}</title>
+        {% block structured_data %}{% endblock %}
     </head>
 
     <body>
         <nav>
             <div>
                 <a id = "homeLogo" href = "{{ url_for('index') }}">
-                    <img class = "homePhoto" src = "{{ url_for('static', filename='images/home-icon.png') }}" height = "60px" alt = "Home">
+                    <img class = "homePhoto" src = "{{ url_for('static', filename='images-webp/home-icon.webp') }}" height = "60px" alt = "{{ owner_name }} — home">
                 </a>
             </div>
             <div id = "navHeaders">

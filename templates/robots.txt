@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Infrastructure, not content.
+Disallow: /healthz
+
+Sitemap: {{ sitemap_url }}
