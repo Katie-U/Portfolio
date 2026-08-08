@@ -1,10 +1,11 @@
 #firstImg{
     height : 500px;
+    border-radius : 50px;
 }
 
-div {
-    background-color: #F5F5F5;
-    font-family : "optima", sans-serif;
+body {
+    background-color: #377C51;
+    font-family : "georgia";
 }
 
 div.aboveTheFold {
@@ -13,12 +14,29 @@ div.aboveTheFold {
     padding-bottom: 60px;
     align-items : center;
     justify-content : space-evenly;
+    flex-direction : row-reverse;
+    align-items : flex-end;
+}
+
+#leftFold {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-end;
 }
 
 #rightFold {
+    background-color : #F5F5F5;
+    padding-right : 40px;
+    padding-top : 30px;
+    border-radius : 50px;
+    height : 475px;
+}
+
+
+#nameAndTitle {
     display : flex;
     flex-direction : column;
-    width : 50%;
+    align-items : flex-end;
 }
 
 #personalLinks {
@@ -29,45 +47,48 @@ div.aboveTheFold {
 #linkedinLogo {
     height : 60px;
     width : 60px;
+     background-color : #F5F5F5;
+    padding-right : 10px;
+    padding-top : 10px;
+    border-radius : 10px;
 }
 
 #githubLogo {
     height : 40px;
     width : 40px;
+   
 }
 
 h1 {
     font-size : 60px;
+    margin-bottom : 0px;
 }
 
 nav {
     display : flex;
     flex-direction : row;
-    justify-content: space-between;
-    align-items : flex-end;
+    justify-content: space-evenly;
     height : 90px;
     padding-right : 20px;
     padding-left : 10px;
     font-size : 20px;
-    background-color : #307816;
+    align-items : flex-end;
+    font-weight : bold;
+    width : 1000px;
 }
 
-img.homePhoto {
-    background-color : #307816;
-}
 
 a.navLink {
     text-decoration : none;
     color : black;
+    font-size : 25px;
 }
 
 a.navLink:hover {
-    font-weight : bold;
+    color : #F5F5F5;
+    
 }
 
-a.navLink.active {
-    font-weight : bold;
-}
 
 #navHeaders {
     width : 400px;
@@ -91,9 +112,6 @@ div.undergraduate {
     height : 300px;
 }
 
-h2 {
-    font-size : 40px;
-}
 
 p.text {
     font-size : 25px;

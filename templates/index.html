@@ -25,20 +25,25 @@
 
 {% block content %}
         <div class ="aboveTheFold">
-            <div id = "leftFold">
+            <div id = "rightFold">
                 <!-- The largest element above the fold, so it is the metric Google
                      measures for LCP: never lazy-load it, and hint it as urgent. -->
                 <img id ="firstImg" src = "{{ url_for('static', filename='images-webp/hero.webp') }}" fetchpriority = "high" decoding = "async" alt = "Portrait of {{ owner_name }}">
             </div>
-            <div id = "rightFold">
-                <h1>
-                    Modern problems need solutions based in research and design fundamentals and
-                    I have the skills to blend them together.
-                </h1>
+            <div id = "leftFold">
+                <div id = "nameAndTitle">
+                    <h1>
+                        Katie Ulinski
+                    </h1>
+                    <h2>
+                        Research, Design, UI/UX
+                    </h2>
+                </div>
+                <p class = "text">
                 <div id = "personalLinks">
-                    <!--<a href = "https://www.github.com/Katie-U">
+                    <a href = "https://www.github.com/Katie-U">
                         <img class = "linkPhoto" id = "githubLogo" src = "{{ url_for('static', filename='images-webp/github-logo.webp') }}" alt = "GitHub">
-                    </a>-->
+                    </a>
                     <!-- rel="me" lets Google tie this profile to the person the
                          JSON-LD above describes. -->
                     <a href = "https://www.linkedin.com/in/katie-ulinski" rel = "me">
@@ -49,6 +54,7 @@
             </div>
         </div>
 
+        <!--
         <div id = "undergradDiv" class = "undergraduate">
             <div id = "leftUndergrad">
                 <h2>
@@ -103,25 +109,6 @@
                 <img id = "gradPhoto" src = "{{ url_for('static', filename='images-webp/team-south-fayette-photo.webp') }}" loading = "lazy" decoding = "async" alt = "The Carnegie Mellon capstone team at South Fayette High School">
             </div>
         </div>
-
-       <!-- <div id = "aboutMeDiv" class = "aboutme">
-            <div>
-            <h2>More About Me</h2>
-            <div class= "quote">
-            <p class = "text" id = "quote">"My heart is in the work" </p>
-            <p class = "text"> - Andrew Carnegie</p>
-            </div>
-            <p class = "text">
-                I am orginally
-            </p>
-            <p class = "text">
-                At Carnegie Mellon, we have this as the moto and I feel that it
-                describes the way that I want to approach my work, skills, and hobbies.
-                I am a huge nerd who also loves crafting and design and sometimes that
-                shines through to my work.
-
-            </p>
-            </div>
-        </div>
         -->
+
 {% endblock %}

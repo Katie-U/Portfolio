@@ -30,12 +30,10 @@
 
     <body>
         <nav>
-            <div>
-                <a id = "homeLogo" href = "{{ url_for('index') }}">
-                    <img class = "homePhoto" src = "{{ url_for('static', filename='images-webp/home-icon.webp') }}" height = "60px" alt = "{{ owner_name }} — home">
+            
+                <a class = "navLink" href = "{{ url_for('index') }}">
+                    <p>Home</p>
                 </a>
-            </div>
-            <div id = "navHeaders">
                 <a class = "navLink" href = "{{ url_for('index') }}#undergradDiv">
                     <p>Undergraduate</p>
                 </a>
@@ -47,7 +45,7 @@
                     <p>About Me</p>
                 </a>
                 -->
-            </div>
+            
         </nav>
 
         {% block content %}{% endblock %}
