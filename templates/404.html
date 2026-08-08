@@ -1,20 +1,26 @@
 {% extends "base.html" %}
+{% import "macros/botanical.html" as botanical %}
 
 {% block title %}Page Not Found{% endblock %}
 
 {% block styles %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project-page.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/page.css') }}"/>
         <!-- A 404 has no content worth ranking, and every missing URL renders the
              same page, so keep it out of the index entirely. -->
         <meta name="robots" content="noindex, follow">
 {% endblock %}
 
 {% block content %}
-        <h1>Page Not Found</h1>
-        <div class = "projects">
-            <p class = "projects">
-                Sorry, that page doesn't exist. Head back to the
-                <a href = "{{ url_for('index') }}">home page</a> to see the rest of the portfolio.
-            </p>
+        <div class="notice">
+            <div class="shell notice__inner">
+                {{ botanical.divider() }}
+                <h1>That page isn't here</h1>
+                <p class="lede" style="margin-inline: auto;">
+                    The link may be out of date. The project work is all on the home page.
+                </p>
+                <p style="margin-top: 2rem;">
+                    <a class="backlink" href="{{ url_for('index') }}">Back to the portfolio</a>
+                </p>
+            </div>
         </div>
 {% endblock %}

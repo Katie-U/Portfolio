@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+{% import "macros/botanical.html" as botanical %}
 
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Set the theme before the first paint, so a returning visitor who
+             chose the green theme never sees a flash of the cream one. Inline
+             and synchronous on purpose: deferring it reintroduces the flash. -->
+        <script>
+            (function () {
+                try {
+                    var saved = localStorage.getItem("theme");
+                    var dark = saved
+                        ? saved === "dark"
+                        : window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+                } catch (e) {
+                    document.documentElement.setAttribute("data-theme", "light");
+                }
+            })();
+        </script>
 
         <title>{% block title %}Portfolio{% endblock %} | {{ owner_name }}</title>
         <meta name="description" content="{{ page_description }}">
         <meta name="author" content="{{ owner_name }}">
+        <meta name="theme-color" content="#F6F6F1" media="(prefers-color-scheme: light)">
+        <meta name="theme-color" content="#14310B" media="(prefers-color-scheme: dark)">
 
         <!-- One address per page, so the Railway subdomain, a custom domain and
              any ?query variants all credit the same URL. -->
@@ -23,34 +44,81 @@
 
         <!-- PNG rather than WebP: Safari still will not render a WebP favicon. -->
         <link rel="icon" href="{{ url_for('static', filename='images/home-icon.png') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home-page.css') }}"/>
+
+        <!-- Fraunces for display, Karla for everything else. The old stack asked
+             for "optima", which is not a web font, so every visitor was served
+             the generic sans fallback instead. -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..600,0..100,0..1&family=Karla:ital,wght@0,400..700;1,400..500&display=swap">
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}"/>
         {% block styles %}{% endblock %}
         {% block structured_data %}{% endblock %}
     </head>
 
     <body>
-        <nav>
-            <div>
-                <a id = "homeLogo" href = "{{ url_for('index') }}">
-                    <img class = "homePhoto" src = "{{ url_for('static', filename='images-webp/home-icon.webp') }}" height = "60px" alt = "{{ owner_name }} — home">
+        <nav class="nav">
+            <div class="shell nav__inner">
+                <a id = "homeLogo" class = "nav__mark" href = "{{ url_for('index') }}">
+                    {{ botanical.flower(22) }}
+                    <span>{{ owner_name }}</span>
                 </a>
-            </div>
-            <div id = "navHeaders">
-                <a class = "navLink" href = "{{ url_for('index') }}#undergradDiv">
-                    <p>Undergraduate</p>
-                </a>
-                <a class = "navLink" href = "{{ url_for('index') }}#gradDiv">
-                    <p>Graduate</p>
-                </a>
-                <!--
-                <a class = "navLink" href = "{{ url_for('index') }}#aboutMeDiv">
-                    <p>About Me</p>
-                </a>
-                -->
+
+                <div class="nav__right">
+                    <div id = "navHeaders">
+                        <a class = "navLink" href = "{{ url_for('index') }}#undergradDiv">
+                            <p>Undergraduate</p>
+                        </a>
+                        <a class = "navLink" href = "{{ url_for('index') }}#gradDiv">
+                            <p>Graduate</p>
+                        </a>
+                        <a class = "navLink{% if request.path == url_for('about') %} active{% endif %}" href = "{{ url_for('about') }}">
+                            <p>About</p>
+                        </a>
+                        <a class = "navLink{% if request.path == url_for('contact') %} active{% endif %}" href = "{{ url_for('contact') }}">
+                            <p>Contact</p>
+                        </a>
+                    </div>
+
+                    <!-- role="switch" rather than a checkbox: it is an immediate
+                         on/off control, not a form field to be submitted. -->
+                    <button type="button" id="themeToggle" class="theme-toggle"
+                            role="switch" aria-checked="false" aria-label="Green theme">
+                        <span class="theme-toggle__knob">
+                            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="12" r="4.5"/>
+                                <path d="M12 1.5v2.5M12 20v2.5M22.5 12H20M4 12H1.5M19.4 4.6l-1.8 1.8M6.4 17.6l-1.8 1.8M19.4 19.4l-1.8-1.8M6.4 6.4L4.6 4.6"/>
+                            </svg>
+                            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                <path d="M21 13.2A9 9 0 1 1 10.8 3a7 7 0 0 0 10.2 10.2Z"/>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
             </div>
         </nav>
 
-        {% block content %}{% endblock %}
+        <main id="main">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="footer">
+            <div class="shell footer__inner">
+                <div>
+                    <div class="footer__name">{{ owner_name }}</div>
+                    <p class="footer__note">Human-Computer Interaction · Carnegie Mellon University</p>
+                </div>
+                <div class="footer__flower">{{ botanical.flower(30) }}</div>
+                <div class="footer__links">
+                    <a href="{{ url_for('about') }}">About</a>
+                    <a href="{{ url_for('contact') }}">Contact</a>
+                    <a href="{{ owner_linkedin }}" rel="me">LinkedIn</a>
+                </div>
+            </div>
+        </footer>
 
         <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     </body>

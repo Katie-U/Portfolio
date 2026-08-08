@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% import "macros/botanical.html" as botanical %}
+
+{% block title %}Contact{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/page.css') }}"/>
+{% endblock %}
+
+{% block content %}
+        <header class="page-hero">
+            <div class="shell page-hero__inner">
+                <p class="eyebrow">Contact</p>
+                <h1>Get in touch</h1>
+                <p class="lede">
+                    {% if owner_email %}
+                    Email is the quickest way to reach me, and I am on LinkedIn too.
+                    {% else %}
+                    LinkedIn is the quickest way to reach me.
+                    {% endif %}
+                </p>
+            </div>
+        </header>
+
+        <div class="case">
+            <div class="shell">
+                <ul class="contact-list">
+                    {# Rendered only when OWNER_EMAIL is set, so the page never ships a
+                       placeholder address that looks real. #}
+                    {% if owner_email %}
+                    <li>
+                        <a href="mailto:{{ owner_email }}">
+                            <span class="contact-list__label">Email</span>
+                            <span class="contact-list__value">{{ owner_email }}</span>
+                            <span class="contact-list__cue" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ owner_linkedin }}" rel="me">
+                            <span class="contact-list__label">LinkedIn</span>
+                            <span class="contact-list__value">linkedin.com/in/katie-ulinski</span>
+                            <span class="contact-list__cue" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </li>
+                </ul>
+
+                {{ botanical.divider() }}
+
+                <p class="page-cta">
+                    <a class="button button--quiet" href="{{ url_for('index') }}">See the work</a>
+                </p>
+            </div>
+        </div>
+{% endblock %}

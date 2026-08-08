@@ -1,0 +1,298 @@
+/* Case studies, About, Contact and the 404.
+   Tokens and page chrome live in base.css. */
+
+/* ------------------------------------------------------------ page header */
+
+.page-hero {
+    padding-top: clamp(2.5rem, 6vw, 4.5rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    background-color: var(--surface-alt);
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.3s ease;
+}
+
+.page-hero__inner {
+    max-width: 62rem;
+}
+
+.backlink {
+    display: inline-block;
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: var(--step-label);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+.backlink::before {
+    content: "\2190\00a0";
+    display: inline-block;
+}
+
+.backlink:hover {
+    color: var(--accent);
+}
+
+.page-hero h1 {
+    margin-bottom: 1.25rem;
+}
+
+.page-hero .record {
+    margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+/* Method names sit inline in the record rather than as separate rows. */
+.record dd .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.record dd .tag-list li {
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--tag-border);
+    font-size: var(--step-label);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+/* -------------------------------------------------------- content blocks */
+
+.case {
+    padding-block: var(--section-y);
+}
+
+.block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.75rem, 4vw, 3.5rem);
+    /* Top-aligned, not centred: a short image beside a long passage otherwise
+       floats in the middle of its column with dead space above and below. */
+    align-items: start;
+}
+
+.block + .block {
+    margin-top: clamp(3rem, 7vw, 5.5rem);
+}
+
+@media (min-width: 880px) {
+    .block {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    /* Alternate which side the media sits on, so a long case study has a
+       rhythm instead of one long left-hand column. */
+    .block--reverse .block__text {
+        order: 2;
+    }
+}
+
+.block__text {
+    max-width: 60ch;
+}
+
+.block__text h2 {
+    margin-bottom: 1.25rem;
+}
+
+.block__media {
+    margin: 0;
+}
+
+.block__media img,
+.block__media video {
+    width: 100%;
+    border: 1px solid var(--line);
+    background-color: var(--surface-alt);
+}
+
+.block__media figcaption,
+.band__media figcaption {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--step-label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Two or three images stacked inside one media slot. */
+.media-stack {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+@media (min-width: 520px) {
+    .media-stack--pair {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 720px) {
+    .media-stack--trio {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.media-stack img {
+    width: 100%;
+    height: 100%;
+    max-height: 26rem;
+    object-fit: contain;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    background-color: var(--surface-alt);
+}
+
+/* A full-width band for wide screenshots that lose detail in a half column. */
+.band {
+    margin-top: clamp(3rem, 7vw, 5.5rem);
+}
+
+.band__media {
+    margin: 0;
+}
+
+.band__media img,
+.band__media video {
+    width: 100%;
+    border: 1px solid var(--line);
+    background-color: var(--surface-alt);
+}
+
+/* --------------------------------------------------------- section label */
+
+/* Sub-projects inside a case study (HIDE has two). */
+.case__label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+
+.case__label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--line);
+}
+
+/* ------------------------------------------------------------ pull quote */
+
+.pullquote {
+    margin: clamp(2.5rem, 5vw, 4rem) 0;
+    padding-left: clamp(1.25rem, 3vw, 2rem);
+    border-left: 2px solid var(--tag-border);
+}
+
+.pullquote p {
+    font-family: var(--display);
+    font-variation-settings: var(--wonk);
+    font-size: var(--step-2);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--text-strong);
+    margin-bottom: 0.75rem;
+}
+
+.pullquote cite {
+    font-style: normal;
+    font-size: var(--step-label);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.page-cta {
+    margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+/* --------------------------------------------------------------- contact */
+
+/* Each way of reaching Katie is one ruled row, matching the specimen record
+   rather than inventing a second card style for the same job. */
+.contact-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+}
+
+.contact-list li {
+    border-bottom: 1px solid var(--line);
+}
+
+.contact-list a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.35rem 1.5rem;
+    padding: clamp(1.1rem, 2.5vw, 1.6rem) 0;
+    text-decoration: none;
+    color: var(--text-strong);
+}
+
+.contact-list__label {
+    grid-column: 1;
+    font-family: var(--display);
+    font-variation-settings: var(--wonk);
+    font-size: var(--step-2);
+    color: var(--text-strong);
+    transition: color 0.2s ease;
+}
+
+.contact-list__value {
+    grid-column: 1;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    word-break: break-word;
+}
+
+.contact-list__cue {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: var(--step-2);
+    color: var(--accent);
+    transition: transform 0.25s ease;
+}
+
+.contact-list a:hover .contact-list__label {
+    color: var(--accent);
+}
+
+.contact-list a:hover .contact-list__cue {
+    transform: translateX(5px);
+}
+
+.contact-list + .divider {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ------------------------------------------------------------------- 404 */
+
+.notice {
+    padding-block: clamp(4rem, 12vw, 9rem);
+    text-align: center;
+}
+
+.notice__inner {
+    max-width: 34rem;
+    margin-inline: auto;
+}
+
+.notice h1 {
+    margin-bottom: 1.25rem;
+}
+
+.notice .divider {
+    margin-bottom: 2.5rem;
+}

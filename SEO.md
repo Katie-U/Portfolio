@@ -4,10 +4,11 @@ How this site is set up for Google, what each change does, and what to do next.
 
 Two things to be honest about up front:
 
-- A five-page personal portfolio will never rank for competitive terms like
-  "UX designer". That is not the goal. The goal is that **searching your name
-  returns this site first**, that recruiters who paste the link get a decent
-  preview, and that the pages load fast enough not to be penalised.
+- A small personal portfolio will never rank for broad competitive terms like
+  "human-computer interaction". That is not the goal. The goal is that
+  **searching your name returns this site first**, that recruiters who paste the
+  link get a decent preview, and that the pages load fast enough not to be
+  penalised.
 - SEO changes are slow. Expect days to weeks before Google reflects them, and
   ignore day-to-day movement in Search Console.
 
@@ -133,8 +134,8 @@ Every change here applies to all six pages at once.
 ### `templates/index.html` — the home page
 
 - **Title** changed from `Portfolio` to
-  `UX Research & Interaction Design Portfolio` — "Portfolio" alone describes
-  nothing and matches no realistic search.
+  `Human-Computer Interaction Portfolio` — "Portfolio" alone describes nothing
+  and matches no realistic search.
 - **JSON-LD `Person` schema** — machine-readable statement of who the site is
   about: name, job title, both universities, and the LinkedIn profile under
   `sameAs`. This is what Google reads when deciding whether a name search refers

@@ -1,0 +1,29 @@
+{# Shared page furniture. `url_for` is a Jinja global in Flask, so it resolves
+   here even though the macro is imported without context. #}
+
+{% macro project_hero(project) %}
+<header class="page-hero">
+    <div class="shell page-hero__inner">
+        <a class="backlink" href="{{ url_for('index') }}">All work</a>
+        <p class="eyebrow">Case study</p>
+        <h1>{{ project.title }}</h1>
+        <p class="lede">{{ project.summary }}</p>
+        <dl class="record">
+            <div class="record__row">
+                <dt>Where</dt>
+                <dd>{{ project.context }}</dd>
+            </div>
+            <div class="record__row">
+                <dt>Methods</dt>
+                <dd>
+                    <ul class="tag-list">
+                        {% for method in project.methods %}
+                        <li>{{ method }}</li>
+                        {% endfor %}
+                    </ul>
+                </dd>
+            </div>
+        </dl>
+    </div>
+</header>
+{% endmacro %}

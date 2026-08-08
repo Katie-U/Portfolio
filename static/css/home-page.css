@@ -1,169 +1,267 @@
-#firstImg{
-    height : 500px;
+/* Home page only. Tokens and page chrome live in base.css. */
+
+/* ------------------------------------------------------------------ hero */
+
+.hero {
+    padding-top: clamp(2.5rem, 6vw, 5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 6rem);
 }
 
-div {
-    background-color: #F5F5F5;
-    font-family : "optima", sans-serif;
+.hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
 }
 
-div.aboveTheFold {
-    padding-top : 60px;
-    display : flex; 
-    padding-bottom: 60px;
-    align-items : center;
-    justify-content : space-evenly;
+@media (min-width: 900px) {
+    .hero__grid {
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    }
 }
 
-#rightFold {
-    display : flex;
-    flex-direction : column;
-    width : 50%;
+.hero__title {
+    margin-bottom: 1.5rem;
+    /* Slightly tighter than the global heading rhythm: this is the one place
+       the display face runs long enough to need it. */
+    line-height: 1.02;
 }
 
-#personalLinks {
-    display : flex;
-    align-items : center;
+.hero__record {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
 }
 
-#linkedinLogo {
-    height : 60px;
-    width : 60px;
-}
-
-#githubLogo {
-    height : 40px;
-    width : 40px;
-}
-
-h1 {
-    font-size : 60px;
-}
-
-nav {
-    display : flex;
-    flex-direction : row;
-    justify-content: space-between;
-    align-items : flex-end;
-    height : 90px;
-    padding-right : 20px;
-    padding-left : 10px;
-    font-size : 20px;
-    background-color : #307816;
-}
-
-img.homePhoto {
-    background-color : #307816;
-}
-
-a.navLink {
-    text-decoration : none;
-    color : black;
-}
-
-a.navLink:hover {
-    font-weight : bold;
-}
-
-a.navLink.active {
-    font-weight : bold;
-}
-
-#navHeaders {
-    width : 400px;
-    display : flex;
-    flex-direction : row;
-    justify-content : space-evenly;
-    background-color : #307816;
-}
-
-
-div.undergraduate {
-    padding-top : 60px;
-    padding-bottom : 60px;
-    display : flex;
-    justify-content : space-evenly;
-   
-}
-
-#undergradPhoto {
-    width : 300px;
-    height : 300px;
-}
-
-h2 {
-    font-size : 40px;
-}
-
-p.text {
-    font-size : 25px;
-}
-
-#gradPhoto {
-    width : 400px;
-}
-
-div.graduate {
-    padding-top : 60px;
-    padding-bottom : 60px;
-    display : flex;
-    flex-direction : row-reverse;
-    justify-content : space-evenly;
-}
-
-#leftUndergrad {
-    width : 60%;
+.hero__actions {
     display: flex;
-    flex-direction : column;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 2rem;
 }
 
-div.projectSection {
-    display : flex;
-    flex-direction : row;
-    justify-content : space-around;
+/* The plate. Green in the light theme and cream in the dark one, with the
+   portrait mounted left of centre so the stem has a margin of its own to grow
+   in, the way a specimen sheet leaves room beside the mount. */
+.hero__plate {
+    position: relative;
+    margin: 0;
+    padding: clamp(1.5rem, 3.5vw, 2.5rem);
+    padding-right: clamp(4.5rem, 10vw, 7.5rem);
+    background-color: var(--panel);
+    overflow: hidden;
+    isolation: isolate;
+    transition: background-color 0.3s ease;
 }
 
-div.project {
-    margin: 5px;
-    border: 1px solid black;
-    float: left;
-    width: 225px;
-  }
+.botanical--branch {
+    position: absolute;
+    right: -1.25rem;
+    bottom: -1.5rem;
+    width: clamp(5.5rem, 13vw, 10.5rem);
+    height: 96%;
+    color: var(--panel-art);
+    opacity: var(--panel-art-opacity);
+    z-index: -1;
+    pointer-events: none;
+}
 
-  #project2 {
-    width : 385px;
-  }
-  
-  div.projecct:hover {
-    border: 1px solid black;
-  }
-  
- 
-  
-  div.descript {
-    padding: 15px;
-    text-align: center;
-  }
+.hero__portrait {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top center;
+    outline: 1px solid var(--panel-outline);
+    outline-offset: 0.6rem;
+}
 
-  #homeLogo {
+/* -------------------------------------------------------------- sections */
+
+.section {
+    padding-block: var(--section-y);
+}
+
+.section__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (min-width: 860px) {
+    .section__head {
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    }
+}
+
+.section__prose {
+    margin-top: 1.5rem;
+}
+
+.section__figure {
+    margin: 0;
+}
+
+.section__figure img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.section__figure figcaption {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--step-label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* ----------------------------------------------------------------- cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@media (min-width: 620px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 980px) {
+    .cards--three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.card {
+    display: flex;
+}
+
+.card__link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--line);
+    background-color: var(--surface);
+    color: inherit;
     text-decoration: none;
-    background-color :#307816;
-    border : none;
-  }
-
-  div.aboutme {
-    padding-top : 60px;
-    padding-bottom : 60px;
-    display : flex;
-    justify-content : space-evenly;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-div.quote {
-    display : flex;
-    
+.card__link:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -18px var(--shadow);
+    color: inherit;
 }
 
-#quote {
-    font-style : italic;
-    padding-right : 5px;
+/* The thumbnails are a mix of logos and interface screenshots, so they are
+   matted rather than cropped — a cropped logo looks like a mistake. */
+.card__frame {
+    background-color: var(--frame);
+    border-bottom: 1px solid var(--line);
+}
+
+.card__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: clamp(1.25rem, 2.5vw, 1.6rem);
+}
+
+.card__context {
+    margin: 0 0 0.6rem;
+    font-size: var(--step-label);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.card__title {
+    margin-bottom: 0.6rem;
+    color: var(--text-strong);
+}
+
+/* flex:1 pushes the tags and cue to the bottom, so cards of different heights
+   still line their footers up. */
+.card__summary {
+    flex: 1;
+    font-size: var(--step--1);
+    line-height: 1.6;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tag {
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--tag-border);
+    font-size: var(--step-label);
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.card__cue {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-size: var(--step-label);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.card__cue::after {
+    content: " \2192";
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.card__link:hover .card__cue::after {
+    transform: translateX(4px);
+}
+
+/* ---------------------------------------------------------------- motion */
+
+@media (prefers-reduced-motion: no-preference) {
+    .hero__intro > *,
+    .hero__plate {
+        animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+    }
+
+    .hero__intro > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero__intro > *:nth-child(2) { animation-delay: 0.12s; }
+    .hero__intro > *:nth-child(3) { animation-delay: 0.19s; }
+    .hero__intro > *:nth-child(4) { animation-delay: 0.26s; }
+    .hero__intro > *:nth-child(5) { animation-delay: 0.33s; }
+    .hero__plate { animation-delay: 0.1s; }
+
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(0.75rem);
+        }
+    }
 }

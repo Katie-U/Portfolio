@@ -1,38 +1,63 @@
 {% extends "base.html" %}
+{% import "macros/page.html" as page %}
 
 {% block title %}Transformational Games{% endblock %}
 
 {% block styles %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project-page.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/page.css') }}"/>
 {% endblock %}
 
 {% block content %}
- <h1>Designing Transformational Games</h1>
- <div class = "projects">
-        <p class = "projects">
-            Transformational games was a class that centered around teaching the
-            design of games meant to elicit some kind of change from the player.
-            We designed physical games, games that used mechanics like dice rolling
-            or basic card mechanics. Throughout the course, we focused on rapid
-            iteration, with the design life cycle for a game only lasting about 2
-            weeks. This helped to teach me the best ways to design and test rapidly
-            and what should be focused on when you only have a short amount of time
-            to design. In addition, we also had a group game assignment. This helped
-            me understand the benefits of designing in a team and how to manage design
-            work in a group. The entire process was collaborative, from the brainstorming
-            to the final product. It was a learning opportunity that allowed me to
-            understand the way that designs and ideas change when working as a team.
-            Our team designed a game that is meant to encourage players to think about
-            climate issues and challenges from perspectives that may be different from
-            their own. This is meant to help teach players how to have difficult
-            conversations about the climate with people who may not agree with them
-            or may not understand their perspective. Each player is given a role
-            with secret goals they must accomplish throughout the game while trying
-            to come up with the best solutions to different problems.
-        </p>
-        <div id = "gameCards">
-         <img id = "gamecard1" src = "{{ url_for('static', filename='images-webp/game-cards.webp') }}" height = "300px" alt = "Game cards" decoding = "async">
-         <img id = "gamecard2" src = "{{ url_for('static', filename='images-webp/game-problems.webp') }}" height = "300px" alt = "Game problem cards" loading = "lazy" decoding = "async">
-         </div>
-    </div>
+        {{ page.project_hero(project) }}
+
+        <div class="case">
+            <div class="shell">
+                <section class="block">
+                    <div class="block__text">
+                        <h2>Designing on a two-week clock</h2>
+                        <p>
+                            Transformational games are games built to change something in the
+                            player. The course covered how to design them, working in physical
+                            formats — dice, cards, and other mechanics you can hold.
+                        </p>
+                        <p>
+                            Every design ran on a roughly two-week cycle, start to finish. That
+                            constraint is the real lesson: with two weeks you cannot test
+                            everything, so you learn to decide what a round of playtesting is
+                            actually for and to cut the rest.
+                        </p>
+                    </div>
+                    <figure class="block__media">
+                        <img src="{{ url_for('static', filename='images-webp/game-cards.webp') }}" alt="Role cards from the climate conversation game" decoding="async">
+                        <figcaption>Role cards.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="block block--reverse">
+                    <div class="block__text">
+                        <h2>The team game</h2>
+                        <p>
+                            Our group designed a game about climate issues, built to make players
+                            argue a position that is not their own. The aim is to give people
+                            practice at difficult climate conversations with someone who
+                            disagrees with them or does not follow their reasoning.
+                        </p>
+                        <p>
+                            Each player holds a role with secret goals to hit while the table
+                            works toward the best solution to a shared problem — so cooperating
+                            and pursuing your own agenda pull against each other by design.
+                        </p>
+                        <p>
+                            Designing it as a team was its own lesson in how an idea shifts once
+                            more than one person owns it, from brainstorming through to the final
+                            rules.
+                        </p>
+                    </div>
+                    <figure class="block__media">
+                        <img src="{{ url_for('static', filename='images-webp/game-problems.webp') }}" alt="Problem cards from the climate conversation game" loading="lazy" decoding="async">
+                        <figcaption>Problem cards.</figcaption>
+                    </figure>
+                </section>
+            </div>
+        </div>
 {% endblock %}

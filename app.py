@@ -18,8 +18,15 @@ OWNER_NAME = "Katie Ulinski"
 SITE_NAME = f"{OWNER_NAME} — Portfolio"
 SITE_DESCRIPTION = (
     "Portfolio of Katie Ulinski, a Human-Computer Interaction masters student at "
-    "Carnegie Mellon University working in UX research and interaction design."
+    "Carnegie Mellon University, with a background in psychology, human factors "
+    "and computer science education research."
 )
+
+OWNER_LINKEDIN = "https://www.linkedin.com/in/katie-ulinski"
+
+# Shown on the contact page. Left blank the page falls back to LinkedIn alone,
+# which is better than shipping a placeholder address that looks real.
+OWNER_EMAIL = os.environ.get("OWNER_EMAIL", "")
 
 # Absolute URLs are required in sitemaps, canonical tags and Open Graph tags.
 # Set SITE_URL in the Railway dashboard to the site's real domain; without it we
@@ -30,7 +37,13 @@ CONFIGURED_SITE_URL = os.environ.get("SITE_URL", "").rstrip("/")
 
 @dataclass(frozen=True)
 class Project:
-    """A project shown as a card on the home page and on its own page."""
+    """A project shown as a card on the home page and on its own page.
+
+    ``description`` is the long form that feeds the page's meta description and
+    link previews. ``summary``, ``context`` and ``methods`` are what a reader
+    sees on the card and in the specimen label at the top of the project page,
+    so they stay short enough to scan.
+    """
 
     slug: str
     title: str
@@ -38,14 +51,15 @@ class Project:
     template: str
     thumbnail: str
     description: str
-    thumbnail_height: str | None = None
-    card_id: str | None = None
+    summary: str
+    context: str
+    methods: tuple[str, ...]
 
 
 PROJECTS: tuple[Project, ...] = (
     Project(
         slug="hide",
-        title="Enterprise: HIDE",
+        title="Humane Interface Design Enterprise",
         section="undergrad",
         template="projects/hide.html",
         thumbnail="hide-logo.webp",
@@ -54,6 +68,13 @@ PROJECTS: tuple[Project, ...] = (
             "at Michigan Tech: a class scheduling prototype for the computer science "
             "department and wireframes for a legal paper serving platform."
         ),
+        summary=(
+            "Human factors support for a student-run design and development studio, "
+            "across a class scheduling prototype for the computer science department "
+            "and wireframes for a legal paper serving platform."
+        ),
+        context="Michigan Tech · Enterprise program",
+        methods=("Stakeholder interviews", "Prototyping", "Wireframing"),
     ),
     Project(
         slug="modeler",
@@ -66,12 +87,17 @@ PROJECTS: tuple[Project, ...] = (
             "thinking skills in non-computer-science classrooms by letting students "
             "diagram, measure and simulate the relationships in a topic."
         ),
-        thumbnail_height="225px",
-        card_id="project2",
+        summary=(
+            "A classroom tool that builds computational thinking outside computer "
+            "science. Students diagram the relationships in a topic, give them "
+            "measurements, then watch the system simulate what they described."
+        ),
+        context="Michigan Tech · CS education research lab",
+        methods=("Subject-matter interviews", "Interface design", "Concept animation"),
     ),
     Project(
         slug="capstone",
-        title="Capstone: South Fayette",
+        title="Stack Builder",
         section="grad",
         template="projects/capstone.html",
         thumbnail="south-fayette-logo.webp",
@@ -80,11 +106,22 @@ PROJECTS: tuple[Project, ...] = (
             "a project aimed at increasing student autonomy and internal motivation so "
             "students can find their own path after high school."
         ),
-        thumbnail_height="224px",
+        summary=(
+            "Helps high school students see everything they have done — classes, "
+            "extracurriculars and opportunities outside school — and find the patterns "
+            "that point toward a path after graduation."
+        ),
+        context="Carnegie Mellon · MHCI capstone",
+        methods=(
+            "Participatory design",
+            "Wizard of Oz",
+            "Database design",
+            "Recommendation system",
+        ),
     ),
     Project(
         slug="cross-stitch",
-        title="Cross Stitch Pattern Website",
+        title="Cross Stitch Pattern Designer",
         section="grad",
         template="projects/cross-stitch.html",
         thumbnail="prototype-1-1.webp",
@@ -93,7 +130,12 @@ PROJECTS: tuple[Project, ...] = (
             "backgrounds and the official DMC colour palette, designed through three "
             "Figma prototypes and then built."
         ),
-        thumbnail_height="210px",
+        summary=(
+            "A block-pattern design tool with photo tracing and the official DMC thread "
+            "palette, taken from three Figma prototypes through to a working build."
+        ),
+        context="Carnegie Mellon · Programming Usable Interfaces",
+        methods=("Figma prototyping", "Front-end build"),
     ),
     Project(
         slug="transformational-games",
@@ -106,7 +148,13 @@ PROJECTS: tuple[Project, ...] = (
             "iteration cycles, including a team game about holding difficult "
             "conversations across differing perspectives on climate issues."
         ),
-        thumbnail_height="225px",
+        summary=(
+            "Physical games designed to change how a player thinks, on two-week "
+            "iteration cycles — including a team game about holding difficult climate "
+            "conversations across opposing perspectives."
+        ),
+        context="Carnegie Mellon · Transformational game design",
+        methods=("Rapid iteration", "Playtesting", "Collaborative design"),
     ),
 )
 
@@ -147,6 +195,8 @@ def seo_defaults():
     return {
         "site_name": SITE_NAME,
         "owner_name": OWNER_NAME,
+        "owner_linkedin": OWNER_LINKEDIN,
+        "owner_email": OWNER_EMAIL,
         "canonical_url": absolute_url(request.path),
         "page_description": SITE_DESCRIPTION,
         "page_image": absolute_url(url_for("static", filename="images-webp/hero.webp")),
@@ -159,6 +209,25 @@ def index():
         "index.html",
         undergrad_projects=projects_in("undergrad"),
         grad_projects=projects_in("grad"),
+    )
+
+
+@app.get("/about")
+def about():
+    return render_template(
+        "about.html",
+        page_description=(
+            f"About {OWNER_NAME}, a Human-Computer Interaction masters student at "
+            "Carnegie Mellon University."
+        ),
+    )
+
+
+@app.get("/contact")
+def contact():
+    return render_template(
+        "contact.html",
+        page_description=f"How to get in touch with {OWNER_NAME}.",
     )
 
 
@@ -204,9 +273,11 @@ def sitemap():
     cannot leave the sitemap stale. The legacy .html redirects are deliberately
     left out: a sitemap should only list canonical URLs.
     """
-    urls = [absolute_url(url_for("index"))] + [
-        absolute_url(url_for("project", slug=project.slug)) for project in PROJECTS
-    ]
+    urls = [
+        absolute_url(url_for("index")),
+        absolute_url(url_for("about")),
+        absolute_url(url_for("contact")),
+    ] + [absolute_url(url_for("project", slug=project.slug)) for project in PROJECTS]
     body = render_template("sitemap.xml", urls=urls)
     return Response(body, mimetype="application/xml")
 

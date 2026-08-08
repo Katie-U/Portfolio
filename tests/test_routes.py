@@ -19,7 +19,9 @@ def client():
 
 
 def page_paths():
-    return ["/"] + [f"/projects/{project.slug}" for project in PROJECTS]
+    return ["/", "/about", "/contact"] + [
+        f"/projects/{project.slug}" for project in PROJECTS
+    ]
 
 
 @pytest.mark.parametrize("path", page_paths())
@@ -40,7 +42,9 @@ def test_referenced_assets_exist(client, path):
 def test_every_project_is_linked_from_home(client):
     html = client.get("/").get_data(as_text=True)
     for project in PROJECTS:
-        assert f'href = "/projects/{project.slug}"' in html
+        # Tolerate whitespace around the "=" so the assertion tracks the link
+        # rather than the template's formatting.
+        assert re.search(rf'href\s*=\s*"/projects/{project.slug}"', html)
 
 
 def test_legacy_urls_redirect(client):

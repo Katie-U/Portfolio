@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% import "macros/botanical.html" as botanical %}
 
+{% block title %}Human-Computer Interaction Portfolio{% endblock %}
 
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home-page.css') }}"/>
+{% endblock %}
 
 {% block structured_data %}
         <!-- Tells Google who this site is about, which is what feeds a knowledge
@@ -12,7 +17,7 @@
             "name": "{{ owner_name }}",
             "url": "{{ canonical_url }}",
             "image": "{{ page_image }}",
-            "jobTitle": "UX Researcher and Interaction Designer",
+            "jobTitle": "Human-Computer Interaction Researcher",
             "description": "{{ page_description }}",
             "alumniOf": [
                 {"@type": "CollegeOrUniversity", "name": "Michigan Technological University"},
@@ -23,105 +28,131 @@
         </script>
 {% endblock %}
 
+{% macro project_grid(projects) %}
+        <ul class="cards{% if projects | length > 2 %} cards--three{% endif %}">
+            {% for project in projects %}
+            <li class="card">
+                <a class="card__link" href="{{ url_for('project', slug=project.slug) }}">
+                    <div class="card__frame">
+                        <img class="card__image" src="{{ url_for('static', filename='images-webp/' ~ project.thumbnail) }}" loading="lazy" decoding="async" alt="">
+                    </div>
+                    <div class="card__body">
+                        <p class="card__context">{{ project.context }}</p>
+                        <h3 class="card__title">{{ project.title }}</h3>
+                        <p class="card__summary">{{ project.summary }}</p>
+                        <ul class="tags">
+                            {% for method in project.methods %}
+                            <li class="tag">{{ method }}</li>
+                            {% endfor %}
+                        </ul>
+                        <span class="card__cue">Read the case study</span>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+{% endmacro %}
+
 {% block content %}
-        <div class ="aboveTheFold">
-            <div id = "leftFold">
-                <!-- The largest element above the fold, so it is the metric Google
-                     measures for LCP: never lazy-load it, and hint it as urgent. -->
-                <img id ="firstImg" src = "{{ url_for('static', filename='images-webp/hero.webp') }}" fetchpriority = "high" decoding = "async" alt = "Portrait of {{ owner_name }}">
-            </div>
-            <div id = "rightFold">
-                <h1>
-                    Modern problems need solutions based in research and design fundamentals and
-                    I have the skills to blend them together.
-                </h1>
-                <div id = "personalLinks">
-                    <!--<a href = "https://www.github.com/Katie-U">
-                        <img class = "linkPhoto" id = "githubLogo" src = "{{ url_for('static', filename='images-webp/github-logo.webp') }}" alt = "GitHub">
-                    </a>-->
-                    <!-- rel="me" lets Google tie this profile to the person the
-                         JSON-LD above describes. -->
-                    <a href = "https://www.linkedin.com/in/katie-ulinski" rel = "me">
-                        <img class = "linkPhoto" id = "linkedinLogo" src = "{{ url_for('static', filename='images-webp/linkedin-logo.webp') }}" decoding = "async" alt = "LinkedIn">
-                    </a>
-                </div>
+        <header class="hero">
+            <div class="shell hero__grid">
+                <div class="hero__intro">
+                    <p class="eyebrow">Human-Computer Interaction</p>
+                    <h1 class="hero__title">I study how people already work, then design the tools that fit them.</h1>
+                    <p class="lede">
+                        I work where psychology, human factors and software meet — mostly on
+                        education technology, and mostly with the people who will have to live
+                        with the result.
+                    </p>
 
-            </div>
-        </div>
+                    <dl class="record hero__record">
+                        <div class="record__row">
+                            <dt>Now</dt>
+                            <dd>M.S. Human-Computer Interaction, Carnegie Mellon University</dd>
+                        </div>
+                        <div class="record__row">
+                            <dt>Before</dt>
+                            <dd>B.S. Psychology and Human Factors, minor in computer science, Michigan Technological University</dd>
+                        </div>
+                        <div class="record__row">
+                            <dt>Focus</dt>
+                            <dd>Education technology · Computational thinking · Participatory design</dd>
+                        </div>
+                    </dl>
 
-        <div id = "undergradDiv" class = "undergraduate">
-            <div id = "leftUndergrad">
-                <h2>
-                    Undergraduate Education: Michigan Technological University
-                </h2>
-                <p class = "text">
-                    At Michigan Tech, I recieved my Bachelors in Psychology and Human Factors and completed a minor in computer science, but I
-                    also did a lot outside of academics. I worked in two research labs focusing on computer science education; I helped teach
-                    introduction computer science courses; I was president of the Association of Psychology Students and The Quiz Bowl Club;
-                    and I was the Varsity Esports Team Statistician. See some of the projects I worked on below:
-                </p>
-                <br>
-                <div class = "projectSection">
-                    {% for project in undergrad_projects %}
-                    <div class = "project"{% if project.card_id %} id = "{{ project.card_id }}"{% endif %}>
-                        <a href = "{{ url_for('project', slug=project.slug) }}">
-                            <img class = "projectPhoto" src = "{{ url_for('static', filename='images-webp/' ~ project.thumbnail) }}"{% if project.thumbnail_height %} height = "{{ project.thumbnail_height }}"{% endif %} loading = "lazy" decoding = "async" alt = "{{ project.title }}">
-                        </a>
-                        <div class = "descript">{{ project.title }}</div>
+                    <div id="personalLinks" class="hero__actions">
+                        <a class="button" href="#undergradDiv">See the work</a>
+                        <a class="button button--quiet" href="{{ url_for('contact') }}">Get in touch</a>
                     </div>
-                    {% endfor %}
                 </div>
-            </div>
-            <div id = "rightUndergrad">
-                <img id = "undergradPhoto" src = "{{ url_for('static', filename='images-webp/esports-photo.webp') }}" loading = "lazy" decoding = "async" alt = "{{ owner_name }} with the Michigan Tech Varsity Esports team">
-            </div>
-        </div>
 
-        <div id = "gradDiv" class = "graduate">
-            <div id = "leftUndergrad">
-                <h2>
-                    Graduate Education: Carnegie Mellon University
-                </h2>
-                <p class = "text">
-                    At Carnegie Mellon, I am working towards my Masters in Human Computer Interaction. I've worked on a wide range of projects
-                    and had many new experiences that have helped me to grow my skills. A major part of program is the capstone project. See some
-                    of the projects I've worked on as well as my capstone below:
-                </p>
-                <br>
-                <div class = "projectSection">
-                    {% for project in grad_projects %}
-                    <div class = "project"{% if project.card_id %} id = "{{ project.card_id }}"{% endif %}>
-                        <a href = "{{ url_for('project', slug=project.slug) }}">
-                            <img class = "projectPhoto" src = "{{ url_for('static', filename='images-webp/' ~ project.thumbnail) }}"{% if project.thumbnail_height %} height = "{{ project.thumbnail_height }}"{% endif %} loading = "lazy" decoding = "async" alt = "{{ project.title }}">
-                        </a>
-                        <div class = "descript">{{ project.title }}</div>
+                <figure class="hero__plate">
+                    {{ botanical.branch() }}
+                    <!-- The largest element above the fold, so it is the metric Google
+                         measures for LCP: never lazy-load it, and hint it as urgent. -->
+                    <img id="firstImg" class="hero__portrait" src="{{ url_for('static', filename='images-webp/hero.webp') }}" fetchpriority="high" decoding="async" alt="Portrait of {{ owner_name }}">
+                </figure>
+            </div>
+        </header>
+
+        <div class="shell">{{ botanical.divider() }}</div>
+
+        <section id="undergradDiv" class="section">
+            <div class="shell">
+                <div class="section__head">
+                    <div class="section__intro">
+                        <p class="eyebrow">Undergraduate</p>
+                        <h2>Michigan Technological University</h2>
+                        <div class="prose section__prose">
+                            <p>
+                                I studied psychology and human factors with a minor in computer
+                                science. Alongside coursework I worked in two computer science
+                                education research labs, taught introductory programming courses,
+                                and kept statistics for the varsity esports team.
+                            </p>
+                            <p>
+                                I also served as president of the Association of Psychology
+                                Students and of the Quiz Bowl Club.
+                            </p>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <figure class="section__figure">
+                        <img src="{{ url_for('static', filename='images-webp/esports-photo.webp') }}" loading="lazy" decoding="async" alt="{{ owner_name }} with the Michigan Tech varsity esports team">
+                        <figcaption>With the Michigan Tech varsity esports team.</figcaption>
+                    </figure>
                 </div>
-            </div>
-            <div id = "rightUndergrad">
-                <img id = "gradPhoto" src = "{{ url_for('static', filename='images-webp/team-south-fayette-photo.webp') }}" loading = "lazy" decoding = "async" alt = "The Carnegie Mellon capstone team at South Fayette High School">
-            </div>
-        </div>
 
-       <!-- <div id = "aboutMeDiv" class = "aboutme">
-            <div>
-            <h2>More About Me</h2>
-            <div class= "quote">
-            <p class = "text" id = "quote">"My heart is in the work" </p>
-            <p class = "text"> - Andrew Carnegie</p>
+                {{ project_grid(undergrad_projects) }}
             </div>
-            <p class = "text">
-                I am orginally
-            </p>
-            <p class = "text">
-                At Carnegie Mellon, we have this as the moto and I feel that it
-                describes the way that I want to approach my work, skills, and hobbies.
-                I am a huge nerd who also loves crafting and design and sometimes that
-                shines through to my work.
+        </section>
 
-            </p>
+        <div class="shell">{{ botanical.divider() }}</div>
+
+        <section id="gradDiv" class="section">
+            <div class="shell">
+                <div class="section__head">
+                    <div class="section__intro">
+                        <p class="eyebrow">Graduate</p>
+                        <h2>Carnegie Mellon University</h2>
+                        <div class="prose section__prose">
+                            <p>
+                                I am completing a masters in Human-Computer Interaction. The
+                                program runs on studio work: short design cycles, real clients,
+                                and a year-long capstone with an outside organisation.
+                            </p>
+                            <p>
+                                These are the projects that shaped how I research, prototype and
+                                hand work off.
+                            </p>
+                        </div>
+                    </div>
+                    <figure class="section__figure">
+                        <img src="{{ url_for('static', filename='images-webp/team-south-fayette-photo.webp') }}" loading="lazy" decoding="async" alt="The Carnegie Mellon capstone team at South Fayette High School">
+                        <figcaption>The capstone team at South Fayette High School.</figcaption>
+                    </figure>
+                </div>
+
+                {{ project_grid(grad_projects) }}
             </div>
-        </div>
-        -->
+        </section>
 {% endblock %}

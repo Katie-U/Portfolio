@@ -1,59 +1,93 @@
 {% extends "base.html" %}
+{% import "macros/page.html" as page %}
 
 {% block title %}Modeler{% endblock %}
 
 {% block styles %}
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/project-page.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/page.css') }}"/>
 {% endblock %}
 
 {% block content %}
-        <h1>Modeler</h1>
-      <div class = "projects">
-        <p class = "projects">
-            Computer science is becoming a more and more important subject for children to learn.
-            With computer science education, students are able to build computational thinking skills,
-            a problem solving approach that involves breaking down a problem, identifying problems,
-            creating step by step solutions, and abstracting information. However, it can be difficult
-            for classrooms to include computer science topics, especially in younger grades when teachers
-            may not know or understand the topics. The purpose of Modeler is to fill that gap, to support
-            the building of computational thinking skills in classrooms that aren’t computer science based.
-            Modeler serves to structure the experience of modeling a topic, one that might not normally be
-            modeled such as the relationships in a novel. This is accomplished in three steps: diagramming
-            the relationships through the use of different shapes, arrows, and labels; providing measurements
-            or changes in the relationships; and a moving or changing simulation that is created by the system
-            to display the relationships as defined.
-        </p>
-         <img id = "modeler1" src = "{{ url_for('static', filename='images-webp/modeler-1.webp') }}" width = "500px" alt = "Modeler interface" decoding = "async">
+        {{ page.project_hero(project) }}
+
+        <div class="case">
+            <div class="shell">
+                <section class="block">
+                    <div class="block__text">
+                        <h2>The gap</h2>
+                        <p>
+                            Computational thinking — breaking a problem down, finding the pattern
+                            in it, working out the steps, abstracting what matters — is a general
+                            problem-solving skill that happens to be taught inside computer
+                            science. Classrooms that are not computer science rarely get to it,
+                            especially in younger grades where the teacher may not have the
+                            background themselves.
+                        </p>
+                        <p>
+                            Modeler closes that gap. It gives students a structure for modelling
+                            a topic that would not normally be modelled — the relationships
+                            between characters in a novel, say — in three steps: diagram the
+                            relationships with shapes, arrows and labels; attach measurements or
+                            rates of change to them; then watch the system turn that description
+                            into a running simulation.
+                        </p>
+                    </div>
+                    <figure class="block__media">
+                        <img src="{{ url_for('static', filename='images-webp/modeler-1.webp') }}" alt="The Modeler diagramming interface" decoding="async">
+                        <figcaption>Diagramming a topic's relationships.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="block block--reverse">
+                    <div class="block__text">
+                        <h2>My role</h2>
+                        <p>
+                            I defined the user flow and designed the interface. To understand
+                            what to carry across, I talked with computer science professors at
+                            Michigan Tech about which parts of learning to program actually
+                            transfer to other subjects, and worked from the principal
+                            investigator's direction throughout.
+                        </p>
+                        <p>
+                            The visual design had to feel like educational software without
+                            feeling dated — the PI wanted a retro register, particularly early
+                            on. The piece I pushed hardest for was a place to reflect: somewhere
+                            students take notes on what they are doing and why. Watching a
+                            simulation run is not the same as understanding it.
+                        </p>
+                    </div>
+                    <figure class="block__media">
+                        <img src="{{ url_for('static', filename='images-webp/modeler-2.webp') }}" alt="The Modeler interface showing a student's notes panel" loading="lazy" decoding="async">
+                        <figcaption>The reflection and notes panel.</figcaption>
+                    </figure>
+                </section>
+
+                <section class="band">
+                    <div class="block__text">
+                        <h2>Explaining it to people outside the project</h2>
+                        <p>
+                            I animated the early interface prototype walking through a basic
+                            photosynthesis model. It gave the developers a clear picture of how
+                            the pages relate and what each component does.
+                        </p>
+                        <p>
+                            An animation rather than a static spec was a deliberate choice: the
+                            PI needed something he could show to people with no exposure to the
+                            design or development process, like professors in other departments
+                            and high school teachers.
+                        </p>
+                    </div>
+                    <figure class="band__media" style="margin-top: 2rem;">
+                        <!-- preload="none" plus a poster means the page costs nothing until
+                             someone actually presses play. -->
+                        <video controls preload="none"
+                               poster="{{ url_for('static', filename='video-web/modeler-concept-animation.webp') }}">
+                            <source src="{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}" type="video/mp4">
+                            Your browser cannot play this video. <a href="{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}">Download it instead.</a>
+                        </video>
+                        <figcaption>Concept animation: modelling photosynthesis.</figcaption>
+                    </figure>
+                </section>
+            </div>
         </div>
-        <div class = "projects">
-        <p class = "projects">
-            For this project, I worked to define the user work flow and the user interface. This was accomplished
-            by talking with computer science professors at Michigan Tech to understand what steps of learning
-            computer science and what could be applied to other topics. The design was also based on the ideas
-            and feedback of the primary investigator. The design is meant to invoke the feeling of more traditional
-            educational software, but not feel outdated. The primary investigator was interested in a retro feel
-            for the design, especially during the initial stages of the design process. An important aspect of the
-            design was to have a place for students to reflect on their process and take notes about what they were
-            doing. It was not enough for them to just mindlessly experience the simulation, but to reflect on the
-            process.
-        </p>
-            <img id = "modeler2" src = "{{ url_for('static', filename='images-webp/modeler-2.webp') }}" width = "500px" alt = "Modeler interface" loading = "lazy" decoding = "async">
-        </div>
-         <div class = "projects">
-        <p class = "projects">
-            I created an animation based on the early interface prototype to help understand the process and what
-            using the system could actually look like. It describes a basic photosynthesis process. This animation
-            was meant to help the developers better understand the relationship between pages and what different
-            components do. This method was chosen over a static document as the primary investigator wanted a
-            medium that could be shown to other people who had no understanding of the design or development
-            process, such as professors from other departments or high school teachers.
-        </p>
-        <!-- preload="none" plus a poster means the page costs nothing until
-             someone actually presses play. -->
-        <video width = "600px" controls preload = "none"
-               poster = "{{ url_for('static', filename='video-web/modeler-concept-animation.webp') }}">
-            <source src = "{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}" type = "video/mp4">
-            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}">Download it instead.</a>
-        </video>
-       </div>
 {% endblock %}

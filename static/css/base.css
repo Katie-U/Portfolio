@@ -1,0 +1,616 @@
+/* Design system and page chrome. Loaded on every page.
+   Page-specific rules live in home-page.css and page.css. */
+
+/* ---------------------------------------------------------------- tokens */
+
+/* Two layers of colour:
+
+   Brand constants never change between themes — they are the identity.
+   Semantic tokens (--page, --text, --panel …) are what the rest of the CSS
+   actually references, and they are the only thing the dark theme overrides.
+   Nothing below this block should name a raw hex value. */
+
+:root {
+    color-scheme: light;
+
+    /* Brand constants. */
+    --forest: #307816;
+    --forest-deep: #24590F;
+    --leaf: #5BA33F;
+    --sage: #C3DBB6;
+    --ink: #16240F;
+
+    /* Surfaces. */
+    --page: #F6F6F1;
+    --surface: #F6F6F1;
+    --surface-alt: #E8EFE3;
+    /* Thumbnail mat. Stays white in both themes: most of the logos and
+       screenshots carry their own white background, and any other colour just
+       frames that white box instead of hiding it. */
+    --frame: #FFFFFF;
+
+    /* Text. */
+    --text: #3D4A38;
+    --text-strong: #16240F;
+    --text-muted: #5F6E58;
+
+    /* Accents and lines. */
+    --accent: #307816;
+    --accent-hover: #24590F;
+    --line: #DDE3D6;
+    --tag-border: #C3DBB6;
+    --divider-art: #9CBE8D;
+    --shadow: rgba(22, 36, 15, 0.45);
+
+    /* The hero plate. Green in the light theme, and deliberately inverted to
+       cream in the dark one so the mounted-specimen contrast survives. */
+    --panel: #307816;
+    --on-panel: #EFF4EA;
+    --panel-art: #C3DBB6;
+    --panel-art-opacity: 0.6;
+    --panel-outline: rgba(195, 219, 182, 0.5);
+
+    /* Buttons, and the toggle knob that borrows them. */
+    --btn-bg: #307816;
+    --btn-bg-hover: #24590F;
+    --btn-text: #F6F6F1;
+
+    --footer-bg: #1B4310;
+    --footer-text: #EFF4EA;
+    --footer-muted: #BDD3AF;
+    --footer-line: rgba(195, 219, 182, 0.4);
+
+    --shell: 1180px;
+    --gutter: clamp(1.25rem, 5vw, 4rem);
+    --section-y: clamp(4rem, 9vw, 7.5rem);
+
+    /* Fluid type scale. Nothing is fixed at 60px any more. */
+    --step-label: clamp(0.7rem, 0.68rem + 0.1vw, 0.775rem);
+    --step--1: clamp(0.85rem, 0.83rem + 0.12vw, 0.925rem);
+    --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.09rem);
+    --step-1: clamp(1.1rem, 1.04rem + 0.3vw, 1.3rem);
+    --step-2: clamp(1.35rem, 1.2rem + 0.7vw, 1.85rem);
+    --step-3: clamp(1.7rem, 1.4rem + 1.4vw, 2.6rem);
+    --step-4: clamp(2.1rem, 1.55rem + 2.6vw, 3.6rem);
+
+    --display: "Fraunces", "Optima", Georgia, "Times New Roman", serif;
+    --sans: "Karla", "Optima", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    --wonk: "SOFT" 40, "WONK" 1;
+}
+
+/* The green theme. Deep forest field, text flipped to white and pale sage. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --page: #14310B;
+    --surface: #1B4310;
+    --surface-alt: #1B4310;
+
+    --text: #DCE8D4;
+    --text-strong: #FFFFFF;
+    --text-muted: #A9C29B;
+
+    /* The brand green is too dark to read on a green field, so links step up
+       to a light leaf tone: 8.3:1 on --page. */
+    --accent: #9FD488;
+    --accent-hover: #C3DBB6;
+    --line: rgba(195, 219, 182, 0.22);
+    --tag-border: rgba(195, 219, 182, 0.35);
+    --divider-art: #6E9A5C;
+    --shadow: rgba(0, 0, 0, 0.5);
+
+    --panel: #F6F6F1;
+    --on-panel: #16240F;
+    --panel-art: #307816;
+    --panel-art-opacity: 0.5;
+    --panel-outline: rgba(48, 120, 22, 0.35);
+
+    --btn-bg: #EFF4EA;
+    --btn-bg-hover: #FFFFFF;
+    --btn-text: #14310B;
+
+    --footer-bg: #0E2408;
+    --footer-text: #EFF4EA;
+    --footer-muted: #A9C29B;
+    --footer-line: rgba(195, 219, 182, 0.35);
+}
+
+/* ------------------------------------------------------------------ base */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* The nav is sticky, so anchor jumps must clear it. */
+    scroll-padding-top: 6rem;
+}
+
+body {
+    margin: 0;
+    background-color: var(--page);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+img,
+video {
+    height: auto;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    color: var(--text-strong);
+    font-family: var(--display);
+    font-variation-settings: var(--wonk);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--step-4);
+}
+
+h2 {
+    font-size: var(--step-3);
+}
+
+h3 {
+    font-size: var(--step-2);
+    line-height: 1.15;
+}
+
+p {
+    margin: 0 0 1.1em;
+    text-wrap: pretty;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* One visible focus style everywhere, including for keyboard users who tab
+   through the project cards. */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ------------------------------------------------------------- utilities */
+
+.shell {
+    width: 100%;
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.lede {
+    max-width: 54ch;
+    font-size: var(--step-1);
+    line-height: 1.55;
+    color: var(--text);
+}
+
+.prose {
+    max-width: 68ch;
+}
+
+/* Letterspaced uppercase label. The utility voice of the whole site: section
+   eyebrows, field names, method tags. */
+.eyebrow {
+    margin: 0 0 1.25rem;
+    font-size: var(--step-label);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* --------------------------------------------------------------- buttons */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--btn-bg);
+    font-family: var(--sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: var(--btn-bg-hover);
+    border-color: var(--btn-bg-hover);
+    color: var(--btn-text);
+}
+
+.button--quiet {
+    background-color: transparent;
+    color: var(--accent);
+    border-color: var(--line);
+}
+
+.button--quiet:hover {
+    background-color: transparent;
+    color: var(--accent-hover);
+    border-color: var(--accent);
+}
+
+/* --------------------------------------------------------------- divider */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    color: var(--divider-art);
+}
+
+.divider__rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--line) 18%, var(--line) 82%, transparent);
+}
+
+.botanical {
+    flex: none;
+    overflow: visible;
+}
+
+/* ------------------------------------------------------- specimen record */
+
+/* The signature element. A hairline-ruled block of field names and values,
+   used for the education record in the hero and the metadata on project
+   pages. It carries real information, so it never reads as ornament. */
+.record {
+    margin: 0;
+    border-top: 1px solid var(--line);
+}
+
+.record__row {
+    display: grid;
+    grid-template-columns: minmax(6.5rem, 8.5rem) minmax(0, 1fr);
+    gap: 0.25rem 1.5rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.record dt {
+    font-size: var(--step-label);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 0.28em;
+}
+
+.record dd {
+    margin: 0;
+    font-size: var(--step--1);
+    line-height: 1.5;
+    color: var(--text-strong);
+}
+
+/* Below this the fixed label column squeezes the value into a narrow ribbon,
+   so the field name moves above its value instead. */
+@media (max-width: 33rem) {
+    .record__row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.3rem;
+    }
+
+    .record dt {
+        padding-top: 0;
+    }
+}
+
+/* ------------------------------------------------------------------- nav */
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    /* Opaque rather than translucent: the nav is sticky, and any browser that
+       skips backdrop-filter would let the page scroll visibly through it. */
+    background-color: var(--page);
+    border-bottom: 1px solid var(--line);
+    transition: background-color 0.3s ease;
+}
+
+.nav__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    min-height: 4.5rem;
+}
+
+.nav__mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--display);
+    font-variation-settings: var(--wonk);
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.nav__mark svg {
+    color: var(--accent);
+    transition: transform 0.5s ease;
+}
+
+.nav__mark:hover svg {
+    transform: rotate(72deg);
+}
+
+/* Links plus the theme switch, so the switch sits immediately after the last
+   nav link and travels with the group when the bar wraps. */
+.nav__right {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.5vw, 1.75rem);
+}
+
+#navHeaders {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.85rem, 2.5vw, 1.75rem);
+}
+
+a.navLink {
+    position: relative;
+    padding: 0.4rem 0;
+    color: var(--text);
+    text-decoration: none;
+    font-size: var(--step--1);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+a.navLink p {
+    margin: 0;
+}
+
+/* A rule that grows in, rather than a font-weight swap that reflows the nav. */
+a.navLink::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.28s ease;
+}
+
+a.navLink:hover,
+a.navLink.active {
+    color: var(--accent);
+}
+
+a.navLink:hover::after,
+a.navLink.active::after {
+    transform: scaleX(1);
+}
+
+/* Four links plus a switch will not share a line with the wordmark on a phone,
+   so the group drops to its own full-width row. */
+@media (max-width: 46rem) {
+    html {
+        scroll-padding-top: 9rem;
+    }
+
+    .nav__inner {
+        min-height: 0;
+        padding-block: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .nav__right {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 26rem) {
+    .nav__mark {
+        font-size: var(--step-0);
+        gap: 0.45rem;
+    }
+
+    .nav__mark svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    #navHeaders {
+        gap: 0.7rem;
+    }
+
+    a.navLink {
+        font-size: 0.775rem;
+        letter-spacing: 0.01em;
+    }
+}
+
+/* ---------------------------------------------------------- theme switch */
+
+.theme-toggle {
+    position: relative;
+    flex: none;
+    display: inline-block;
+    width: 3.25rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background-color: var(--surface-alt);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.theme-toggle__knob {
+    position: absolute;
+    top: 50%;
+    left: 0.1875rem;
+    display: grid;
+    place-items: center;
+    width: 1.3125rem;
+    height: 1.3125rem;
+    border-radius: 50%;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    transform: translateY(-50%);
+    transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1), background-color 0.3s ease;
+}
+
+:root[data-theme="dark"] .theme-toggle__knob {
+    transform: translateY(-50%) translateX(1.4375rem);
+}
+
+.theme-toggle__knob svg {
+    width: 0.8125rem;
+    height: 0.8125rem;
+}
+
+/* Only one icon is ever the current state. */
+.theme-toggle .icon-moon,
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    display: block;
+}
+
+/* ---------------------------------------------------------------- footer */
+
+/* No margin-top: the last section already ends on a full --section-y of
+   padding, and adding to it leaves a dead band above the footer. */
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+}
+
+.footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.footer__name {
+    font-family: var(--display);
+    font-variation-settings: var(--wonk);
+    font-size: var(--step-2);
+    color: var(--footer-text);
+    margin-bottom: 0.35rem;
+}
+
+.footer__note {
+    font-size: var(--step--1);
+    color: var(--footer-muted);
+    margin: 0;
+}
+
+.footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer__links a {
+    color: var(--footer-text);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-bottom: 1px solid var(--footer-line);
+    padding-bottom: 2px;
+}
+
+.footer__links a:hover {
+    color: var(--sage);
+    border-bottom-color: var(--sage);
+}
+
+.footer :focus-visible {
+    outline-color: var(--sage);
+}
+
+.footer__flower {
+    color: var(--footer-line);
+}
+
+/* ----------------------------------------------------------------- motion */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
