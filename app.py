@@ -162,6 +162,20 @@ def index():
     )
 
 
+@app.get("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.get("/contact")
+def contact():
+    return render_template("contact.html")
+
+@app.get("/experiences")
+def experiences():
+    return render_template("experiences.html")
+
+
 @app.get("/projects/<slug>")
 def project(slug: str):
     selected = PROJECTS_BY_SLUG.get(slug)

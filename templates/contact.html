@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}about{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Send me a message!</h1>
+    <div id = "contactMethods">
+    <div id = "contactForm">
+        <input type = "text" placeholder = "Name" id = "nameInput"><br>
+        <input type = "text" placeholder = "Email" id = "emailInput"><br>
+        <input type = "text" placeholder = "Subject" id = "subjectInput"><br>
+        <input class = "messageInput" type = "text" placeholder = "Message" id = "messageInput"><br>
+
+        <button id = "submitButton">Submit</button>
+    </div>
+    <div id = "linkedinInfo">
+        <p class = "linkedinText">Or connect with me on LinkedIn!</p>
+        <a class = "linkedinLink" href = "https://www.linkedin.com/in/katie-ulinski" rel = "me">
+            <img class = "linkPhoto" id = "linkedinLogo" src = "{{ url_for('static', filename='images-webp/linkedin-logo.webp') }}" decoding = "async" alt = "LinkedIn">
+            <p>Katie Ulinski</p>
+        </a>
+    </div>
+    </div>
+
+{%endblock content %}

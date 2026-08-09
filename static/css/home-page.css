@@ -1,6 +1,9 @@
 #firstImg{
     height : 500px;
     border-radius : 50px;
+    width : 350px;
+    object-fit : cover;
+    object-position : center;
 }
 
 body {
@@ -9,11 +12,10 @@ body {
 }
 
 div.aboveTheFold {
-    padding-top : 60px;
+    padding-top : 100px;
     display : flex; 
     padding-bottom: 60px;
-    align-items : center;
-    justify-content : space-evenly;
+    justify-content : space-around;
     flex-direction : row-reverse;
     align-items : flex-end;
 }
@@ -25,7 +27,7 @@ div.aboveTheFold {
 }
 
 #rightFold {
-    background-color : #F5F5F5;
+    background-color : #D9FCE7;
     padding-right : 40px;
     padding-top : 30px;
     border-radius : 50px;
@@ -44,37 +46,46 @@ div.aboveTheFold {
     align-items : center;
 }
 
+/*img.linkPhoto {
+    padding : 10px;
+}*/
+
 #linkedinLogo {
     height : 60px;
     width : 60px;
-     background-color : #F5F5F5;
-    padding-right : 10px;
-    padding-top : 10px;
-    border-radius : 10px;
 }
 
 #githubLogo {
     height : 40px;
     width : 40px;
-   
 }
+
+/*#linkBackground {
+    background-color : #D9FCE7;
+    border-radius : 10px;
+    padding-right : 10px;
+    padding-top : 10px;
+    height : 40px;
+    width : 40px;
+}
+*/
 
 h1 {
     font-size : 60px;
     margin-bottom : 0px;
+    color : #1F0F0D;
 }
 
 nav {
     display : flex;
     flex-direction : row;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     height : 90px;
     padding-right : 20px;
-    padding-left : 10px;
     font-size : 20px;
-    align-items : flex-end;
-    font-weight : bold;
-    width : 1000px;
+    align-items : center;
+    border-top : 2px solid #1F0F0D;
+    border-bottom : 2px solid #1F0F0D;
 }
 
 
@@ -82,11 +93,35 @@ a.navLink {
     text-decoration : none;
     color : black;
     font-size : 25px;
+    padding : 55px;
 }
 
 a.navLink:hover {
-    color : #F5F5F5;
-    
+    color : #D9FCE7;
+}
+
+#buttons {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-evenly;
+    padding-top : 100px;
+}
+
+.button {
+    background-color : #D9FCE7;
+    border : none;
+    padding : 15px;
+    border-radius : 10px;
+    width : 350px;
+    height : 130px;
+    color : black;
+    font-weight : bold;
+    font-size : 25px;
+    cursor : pointer;
+}
+
+.button:hover {
+    background-color : #B4D1C0;
 }
 
 

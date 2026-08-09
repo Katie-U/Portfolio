@@ -1,0 +1,99 @@
+body {
+    background-color: #377C51;
+    font-family : "georgia";
+}
+
+h1 {
+    display : flex;
+    justify-content : center;
+    font-size : 60px;
+    font-weight : bold;
+    color :#1F0F0D;
+    padding-top : 100px;
+}
+
+#contactMethods {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-evenly;
+    margin-top : 100px;
+}
+
+#contactForm {
+    background-color : #D9FCE7;
+    width : 600px;
+    height : 680px;
+    border-radius : 50px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    padding-top : 40px;
+}
+
+input {
+    width : 450px;
+    height : 40px;
+    background-color : #3C5747;
+    border-radius : 15px;
+    border : none;
+    margin : 10px;
+    color :#D9FCE7;
+    padding-left : 30px;
+}
+
+input:hover {
+    border : 2px solid #1F0F0D;
+}
+
+::placeholder {
+    color : #D9FCE7;
+}
+
+input.messageInput {
+    height : 250px;
+    
+}
+
+#submitButton {
+    background-color : #3C5747;
+    border : none;
+    padding : 15px;
+    margin-top : 20px;
+    border-radius : 30px;
+    width : 150px;
+    height : 50px;
+    color : #D9FCE7;
+    font-weight : bold;
+    font-size : 15px;
+}
+
+#submitButton:hover {
+    background-color : #D9FCE7;
+    color : #1F0F0D;
+    border : 2px solid #1F0F0D;
+}
+
+#linkedinInfo {
+    background-color : #D9FCE7;
+    width :400px;
+    height : 200px;
+    border-radius : 25px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+}
+
+p.linkedinText {
+    font-size : 20px;
+    padding-top : 20px;
+    font-weight : bold;
+}
+
+a.linkedinLink {
+    text-decoration : none;
+    color : black;
+    font-size : 25px;
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+}

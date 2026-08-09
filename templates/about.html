@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}about{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/about.css') }}"/>
+{% endblock %}
+
+{% block content %}
+
+
+  <div class ="aboveTheFold">
+            <div id = "rightFold">
+                <!-- The largest element above the fold, so it is the metric Google
+                     measures for LCP: never lazy-load it, and hint it as urgent. -->
+                <img id ="firstImg" src = "{{ url_for('static', filename='images-webp/esports-photo.webp') }}" fetchpriority = "high" decoding = "async" alt = "Portrait of {{ owner_name }}">
+            </div>
+            <div id = "leftFold">
+                <div id = "nameAndTitle">
+                    <h1>
+                        Katie Ulinski
+                    </h1>
+                    
+                        <p id = "subheading">put something about myself here, something awesome for sure</p>
+                
+                </div>
+            </div>
+    </div>
+
+    <div class = "background">
+        <h2>Education</h2>
+        <div class = "educationBox">
+            <div class = "educationText">
+                <h3>Carnegie Mellon University</h3>
+                <p class = "description">Masters of Human-Computer Interaction</p>
+            
+                <h3>Michigan Technological University</h3>
+                <p class = "description">Bachelor of Science in Psychology & Human Factors</p>
+                <p class = "description">Concentration in Human-Computer Interface Design</p>
+                <p class = "description">Minor in Computer Science</p>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class = "background">
+        <h2>Interests</h2>
+        <div class = "educationBox" id ="interstsBox">
+            <div class = "educationText">
+             <ul>
+                <li>Movies</li>
+                <li>Books</li>
+                <li>Music</li>
+                <li>Video Games</li>
+                <li>Baking</li>
+                <li>Fiber Arts</li>
+             </ul>
+              <p id = "extra">...and I always love to explore new ideas and experiences!</p>
+            </div>
+           
+        </div>
+    </div>
+
+{%endblock content %}

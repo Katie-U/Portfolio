@@ -1,0 +1,118 @@
+#firstImg{
+    height : 500px;
+    border-radius : 50px;
+    width : 350px;
+    object-fit : cover;
+    object-position : center;
+}
+
+body {
+    background-color: #377C51;
+    font-family : "georgia";
+}
+
+div.aboveTheFold {
+    padding-top : 100px;
+    display : flex; 
+    padding-bottom: 60px;
+    align-items : flex-end;
+    justify-content : space-around;
+    flex-direction : row-reverse;
+}
+
+#leftFold {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-end;
+}
+
+#rightFold {
+    background-color : #D9FCE7;
+    padding-right : 40px;
+    padding-top : 30px;
+    border-radius : 50px;
+    height : 475px;
+}
+
+
+#nameAndTitle {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-end;
+}
+
+h1 {
+    font-size : 60px;
+    margin-bottom : 0px;
+    color : #1F0F0D;
+}
+
+#subheading {
+    width : 400px;
+   font-size : 30px;
+}
+
+h2 {
+    margin-left : 290px;
+    font-size : 40px;
+    font-weight : bold;
+    margin-bottom : 10px;
+    color : #1F0F0D;
+}
+
+div.background {
+    margin-top : 70px;
+}
+
+div.educationBox {
+    display : flex;
+    flex-direction : column;
+    justify-content : flex-start;
+    background-color : #D9FCE7;
+    border-radius : 20px;
+    height : 450px;
+    width : 70%;
+    margin-left : 260px;
+}
+
+#interstsBox {
+    height : 400px;
+}
+
+div.educationText {
+    padding-left : 60px;
+}
+
+h3 {
+    padding-top : 15px;
+    font-size : 35px;
+    padding-bottom : 0px;
+}
+
+p.description {
+    font-size : 30px;
+    margin-top: 2px;
+    margin-bottom : 2px;
+}
+
+ul {
+    padding-top : 50px;
+    display : flex;
+    flex-direction : column;
+    flex-wrap : wrap;
+    height : 180px;
+}
+
+li{
+    font-size : 30px;
+    padding-bottom : 20px;
+}
+
+li ::marker {
+    color : #1F0F0D;
+}
+
+#extra {
+    font-size : 30px;
+    padding-top : 20px;
+}

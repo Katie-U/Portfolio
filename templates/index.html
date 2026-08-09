@@ -41,17 +41,32 @@
                 </div>
                 <p class = "text">
                 <div id = "personalLinks">
+                    <div id = "linkBackground">
                     <a href = "https://www.github.com/Katie-U">
                         <img class = "linkPhoto" id = "githubLogo" src = "{{ url_for('static', filename='images-webp/github-logo.webp') }}" alt = "GitHub">
                     </a>
+                    </div>
                     <!-- rel="me" lets Google tie this profile to the person the
                          JSON-LD above describes. -->
+                     <div id = "linkBackground">
                     <a href = "https://www.linkedin.com/in/katie-ulinski" rel = "me">
                         <img class = "linkPhoto" id = "linkedinLogo" src = "{{ url_for('static', filename='images-webp/linkedin-logo.webp') }}" decoding = "async" alt = "LinkedIn">
                     </a>
+                    </div>
                 </div>
 
             </div>
+        </div>
+
+
+        <div id = "buttons">
+            <button class = "button" type = "button" onclick = "window.location.href = '{{ url_for('experiences')}}#michiganTech'">
+                    <p>Michigan Tech Experiences</p>
+                    
+            </button>
+             <button class = "button" type = "button" onclick = "window.location.href = '{{ url_for('experiences')}}#carnegieMellon';">
+                    <p>Carnegie Mellon Experiences</p>
+            </button>
         </div>
 
         <!--
