@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}about{% endblock %}
+{% block title %}Experiences{% endblock %}
 
 {% block styles %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experiences.css') }}"/>
@@ -10,8 +10,62 @@
     <h1>Relevant course work, capstone projects, and experiences</h1>
     <div id = "carnegieMellon">
         <h2>Carnegie Mellon University</h2>
+        <div class = "experienceSection">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "southFayetteLogo" src = "{{url_for('static', filename='images-webp/south-fayette-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of South Fayette High School">
+                <p id = "type">Capstone Project</p>
+                <p id = "title">Team South Fayette</p>
+            </div>
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "crossStitch" src = "{{url_for('static', filename='images-webp/final-project-figma.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the cross stitch pattern website">
+                <p id = "type">Course Work</p>
+                <p id = "title">Cross Stitch Pattern Website</p>
+            </div>
+            <div id = "specificExperience">
+                <p id = "type">Course Work</p>
+                <p id = "title">EBike Deisgn</p>
+            </div>
+            <div id = "specificExperience">
+                <p id = "type">Course Work</p>
+                <p id = "title">AI Ethics and Reporting</p>
+            </div>
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "transformationalGames" src = "{{url_for('static', filename='images-webp/game-cards.webp') }}" fetchpriority = "low" decoding = async alt = "example of game card created for class">
+                <p id = "type">Course Work</p>
+                <p id = "title">Transformational Games</p>
+            </div>
+        </div>
 
     </div>
         
-    <div id = "michiganTech"></div>
+    <div id = "michiganTech">
+        <h2>Michigan Technological University</h2>
+        <div class = "experienceSection">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "hideLogo" src = "{{url_for('static', filename='images-webp/hide-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of HIDE enterprise">
+                <p id = "type">Capstone Project</p>
+                <p id = "title">HIDE Enterprise</p>
+            </div>
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "crossStitch" src = "{{url_for('static', filename='images-webp/final-project-figma.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the cross stitch pattern website">
+                <p id = "type">Course Work</p>
+                <p id = "title">Michigan Heptile Tracking App</p>
+            </div>
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "modelerPhoto" src = "{{url_for('static', filename='images-webp/modeler-2.webp') }}" fetchpriority = "low" decoding = async alt = "example screen from design work for Modeler">
+                <p id = "type">Experience</p>
+                <p id = "title">Computer Science Education Research</p>
+            </div>
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "esportsPhoto" src = "{{url_for('static', filename='images-webp/esports-banquet.webp') }}" fetchpriority = "low" decoding = async alt = "Katie and Katy at the Esports banquet, Kaite holding an award">
+                <p id = "type">Experience</p>
+                <p id = "title">Esports Statistician</p>
+            </div>
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "clubPhoto" src = "{{url_for('static', filename='images-webp/club-photo.webp') }}" fetchpriority = "low" decoding = async alt = "group photo of the Association of Psychology Students">
+                <p id = "type">Experience</p>
+                <p id = "title">Club President</p>
+            </div>
+        </div>
+    </div>
 {%endblock content %}

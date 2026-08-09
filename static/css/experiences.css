@@ -1,6 +1,67 @@
 h1 {
-    width : 70%;
+    width : 65%;
     padding-left : 200px;
-    padding-top : 50px;
+    padding-top : 55px;
     font-size : 55px;
+}
+
+h2 {
+    color : #D9FCE7;
+    font-weight : bold;
+    font-size : 30px;
+}
+
+#carnegieMellon {
+    padding-left : 200px;
+    padding-right : 200px;
+    padding-top : 70px;
+}
+
+#michiganTech {
+    padding-left : 200px;
+    padding-right : 200px;
+    padding-top : 70px;
+}
+
+div.experienceSection {
+    display : flex;
+    flex-direction : row;
+    flex-wrap : wrap;
+    justify-content : space-evenly;
+}
+
+#specificExperience {
+    background-color : #D9FCE7;
+    width : 350px;
+    border-radius : 30px;
+    margin-left : 20px;
+    margin-right : 20px;
+    margin-bottom : 40px;
+    padding-bottom : 10px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+}
+
+img.experiencePhoto {
+    width : 200px;
+    height : 200px;
+    margin-top : 40px;
+    margin-bottom : 30px;
+    object-fit : contain;
+}
+
+#type {
+    font-weight : bold;
+    font-size : 20px;
+    color : #1F0F0D;
+    margin : 0px;
+    margin-top : 10px;
+}
+
+#title {
+    font-size : 18px;
+    margin-top : 5px;
+    
 }
