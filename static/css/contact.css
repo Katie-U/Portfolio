@@ -46,6 +46,7 @@ textarea {
     font-family : inherit;
     font-size : 15px;
     box-sizing : content-box;
+    border : 2px solid #D9FCE7;
 }
 
 input:hover,
@@ -135,6 +136,12 @@ p.fieldError {
     display : flex;
     flex-direction : column;
     align-items : center;
+}
+
+
+#linkedinLogo {
+    height : 60px;
+    width : 60px;
 }
 
 p.linkedinText {

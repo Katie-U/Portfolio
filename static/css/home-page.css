@@ -6,11 +6,6 @@
     object-position : center;
 }
 
-body {
-    background-color: #377C51;
-    font-family : "georgia";
-}
-
 div.aboveTheFold {
     padding-top : 100px;
     display : flex; 
@@ -69,36 +64,6 @@ div.aboveTheFold {
     width : 40px;
 }
 */
-
-h1 {
-    font-size : 60px;
-    margin-bottom : 0px;
-    color : #1F0F0D;
-}
-
-nav {
-    display : flex;
-    flex-direction : row;
-    justify-content: flex-end;
-    height : 90px;
-    padding-right : 20px;
-    font-size : 20px;
-    align-items : center;
-    border-top : 2px solid #1F0F0D;
-    border-bottom : 2px solid #1F0F0D;
-}
-
-
-a.navLink {
-    text-decoration : none;
-    color : black;
-    font-size : 25px;
-    padding : 55px;
-}
-
-a.navLink:hover {
-    color : #D9FCE7;
-}
 
 #buttons {
     display : flex;

@@ -23,7 +23,7 @@
 
         <!-- PNG rather than WebP: Safari still will not render a WebP favicon. -->
         <link rel="icon" href="{{ url_for('static', filename='images/home-icon.png') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home-page.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}"/>
         {% block styles %}{% endblock %}
         {% block structured_data %}{% endblock %}
     </head>
@@ -52,6 +52,18 @@
         </nav>
 
         {% block content %}{% endblock %}
+
+         <footer>
+            <p class = "footer">Katie Ulinski - 2026</p>
+            <div id = "footerLinks">
+                <a class = "footerLink" href = "{{url_for('index') }}">
+                    <p>Home</p>
+                </a>
+                <a class = "footerLink" href = "{{url_for('contact') }}">
+                    <p>Contact</p>
+                </a>
+            </div>
+        </footer>
 
         <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     </body>
