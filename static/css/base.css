@@ -1,6 +1,8 @@
 body {
     background-color: #377C51;
     font-family : "georgia";
+    margin : 0px;
+    margin-top : 10px;
 }
 
 nav {
@@ -13,6 +15,8 @@ nav {
     align-items : center;
     border-top : 2px solid #1F0F0D;
     border-bottom : 2px solid #1F0F0D;
+    margin-left : 10px;
+    margin-right : 10px;
 }
 
 
