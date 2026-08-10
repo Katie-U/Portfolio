@@ -49,6 +49,25 @@ textarea {
     border : 2px solid #D9FCE7;
 }
 
+div.infoText {
+    display : flex;
+    flex-direction : row;
+    width: inherit;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right : 120px;
+}
+
+#star {
+    font-weight : bold;
+    font-size : 20px;
+    padding-right : 10px;
+}
+
+#explaination {
+    font-size : 12px;
+}
+
 input:hover,
 textarea:hover {
     border : 2px solid #1F0F0D;
