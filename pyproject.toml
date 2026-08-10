@@ -6,6 +6,8 @@ requires-python = ">=3.11"
 dependencies = [
     "flask>=3.1.0",
     "gunicorn>=23.0.0",
+    "python-dotenv>=1.2.2",
+    "resend>=2.35.0",
 ]
 
 [dependency-groups]

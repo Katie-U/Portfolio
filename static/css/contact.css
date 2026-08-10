@@ -22,26 +22,34 @@ h1 {
 #contactForm {
     background-color : #D9FCE7;
     width : 600px;
-    height : 680px;
+    /* Field errors appear and disappear under the inputs, so the card grows
+       rather than clipping them. */
+    min-height : 680px;
     border-radius : 50px;
     display : flex;
     flex-direction : column;
     align-items : center;
     padding-top : 40px;
+    padding-bottom : 40px;
 }
 
-input {
+input,
+textarea {
     width : 450px;
     height : 40px;
     background-color : #3C5747;
     border-radius : 15px;
     border : none;
-    margin : 10px;
+    margin : 10px 10px 0 10px;
     color :#D9FCE7;
     padding-left : 30px;
+    font-family : inherit;
+    font-size : 15px;
+    box-sizing : content-box;
 }
 
-input:hover {
+input:hover,
+textarea:hover {
     border : 2px solid #1F0F0D;
 }
 
@@ -49,9 +57,50 @@ input:hover {
     color : #D9FCE7;
 }
 
-input.messageInput {
+textarea.messageInput {
     height : 250px;
-    
+    padding-top : 10px;
+    resize : vertical;
+}
+
+/* Labels are kept for screen readers; the placeholders carry the visual
+   labelling. */
+.visuallyHidden {
+    position : absolute;
+    width : 1px;
+    height : 1px;
+    overflow : hidden;
+    clip : rect(0 0 0 0);
+    white-space : nowrap;
+}
+
+/* The bot trap. display:none rather than off-screen positioning, because a
+   real person must never be able to reach it. */
+.honeypot {
+    display : none;
+}
+
+p.fieldError {
+    width : 480px;
+    margin : 4px 10px 0 10px;
+    min-height : 1em;
+    color : #7A1F1F;
+    font-size : 14px;
+}
+
+#formStatus {
+    margin-top : 15px;
+    min-height : 1em;
+    font-size : 16px;
+    font-weight : bold;
+}
+
+#formStatus.statusOk {
+    color : #1F0F0D;
+}
+
+#formStatus.statusError {
+    color : #7A1F1F;
 }
 
 #submitButton {
@@ -71,6 +120,11 @@ input.messageInput {
     background-color : #D9FCE7;
     color : #1F0F0D;
     border : 2px solid #1F0F0D;
+}
+
+#submitButton:disabled {
+    opacity : 0.6;
+    cursor : progress;
 }
 
 #linkedinInfo {

@@ -1,22 +1,48 @@
 {% extends "base.html" %}
 
-{% block title %}about{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block styles %}
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact.css') }}"/>
 {% endblock %}
 
 {% block content %}
+    {# Only the POST handler passes these; a plain GET renders an empty form. #}
+    {% set values = values | default({}) %}
+    {% set errors = errors | default({}) %}
+
     <h1>Send me a message!</h1>
     <div id = "contactMethods">
-    <div id = "contactForm">
-        <input type = "text" placeholder = "Name" id = "nameInput"><br>
-        <input type = "text" placeholder = "Email" id = "emailInput"><br>
-        <input type = "text" placeholder = "Subject" id = "subjectInput"><br>
-        <input class = "messageInput" type = "text" placeholder = "Message" id = "messageInput"><br>
+    <!-- Posts to this same URL. contact.js intercepts the submit and sends it
+         with fetch so the page never reloads; without JavaScript the plain form
+         post reaches the same handler and the page re-renders with the result. -->
+    <form id = "contactForm" method = "post" action = "{{ url_for('contact_submit') }}" novalidate>
+        <label class = "visuallyHidden" for = "nameInput">Name</label>
+        <input type = "text" placeholder = "Name" id = "nameInput" name = "name" autocomplete = "name" maxlength = "100" value = "{{ values.get('name', '') }}" required>
+        <p class = "fieldError" id = "nameError">{{ errors.get('name', '') }}</p>
 
-        <button id = "submitButton">Submit</button>
-    </div>
+        <label class = "visuallyHidden" for = "emailInput">Email</label>
+        <input type = "email" placeholder = "Email" id = "emailInput" name = "email" autocomplete = "email" maxlength = "254" value = "{{ values.get('email', '') }}" required>
+        <p class = "fieldError" id = "emailError">{{ errors.get('email', '') }}</p>
+
+        <label class = "visuallyHidden" for = "subjectInput">Subject</label>
+        <input type = "text" placeholder = "Subject" id = "subjectInput" name = "subject" maxlength = "150" value = "{{ values.get('subject', '') }}" required>
+        <p class = "fieldError" id = "subjectError">{{ errors.get('subject', '') }}</p>
+
+        <label class = "visuallyHidden" for = "messageInput">Message</label>
+        <textarea class = "messageInput" placeholder = "Message" id = "messageInput" name = "message" maxlength = "5000" required>{{ values.get('message', '') }}</textarea>
+        <p class = "fieldError" id = "messageError">{{ errors.get('message', '') }}</p>
+
+        <!-- Hidden from people and from screen readers, so only a bot fills it
+             in. The server drops any submission that has it set. -->
+        <div class = "honeypot" aria-hidden = "true">
+            <label for = "websiteInput">Leave this field empty</label>
+            <input type = "text" id = "websiteInput" name = "website" tabindex = "-1" autocomplete = "off">
+        </div>
+
+        <button id = "submitButton" type = "submit">Submit</button>
+        <p id = "formStatus" role = "status" aria-live = "polite" class = "{{ 'statusOk' if status_ok else 'statusError' }}">{{ status_message | default('') }}</p>
+    </form>
     <div id = "linkedinInfo">
         <p class = "linkedinText">Or connect with me on LinkedIn!</p>
         <a class = "linkedinLink" href = "https://www.linkedin.com/in/katie-ulinski" rel = "me">
@@ -25,5 +51,7 @@
         </a>
     </div>
     </div>
+
+    <script src="{{ url_for('static', filename='js/contact.js') }}" defer></script>
 
 {%endblock content %}
