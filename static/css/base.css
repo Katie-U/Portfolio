@@ -27,7 +27,8 @@ a.navLink {
     padding : 55px;
 }
 
-a.navLink:hover {
+a.navLink:hover,
+ a.navLink[aria-current="page"]  {
     color : #D9FCE7;
 }
 

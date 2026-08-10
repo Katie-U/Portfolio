@@ -31,16 +31,16 @@
     <body>
         <nav>
             
-                <a class = "navLink" href = "{{ url_for('index') }}">
+                <a class = "navLink" href = "{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current = "page"{% endif %}>
                     <p>Home</p>
                 </a>
-                <a class = "navLink" href = "{{ url_for('experiences') }}">
+                <a class = "navLink" href = "{{ url_for('experiences') }}" {% if request.endpoint == 'experiences' %}aria-current = "page"{% endif %}>
                     <p>Experiences</p>
                 </a>
-                <a class = "navLink" href = "{{ url_for('about') }}">
+                <a class = "navLink" href = "{{ url_for('about') }}" {% if request.endpoint == 'about' %}aria-current = "page"{% endif %}>
                     <p>About</p>
                 </a>
-                <a class = "navLink" href = "{{ url_for('contact') }}">
+                <a class = "navLink" href = "{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}aria-current = "page"{% endif %}>
                     <p>Contact</p>
                 </a>
                 <!--
