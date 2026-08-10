@@ -42,6 +42,11 @@ div.experienceSection {
     flex-direction : column;
     align-items : center;
     justify-content : center;
+    border : 3px solid #377C51;
+}
+
+#specificExperience:hover {
+    border : 3px solid #1F0F0D;
 }
 
 img.experiencePhoto {
@@ -63,5 +68,4 @@ img.experiencePhoto {
 #title {
     font-size : 18px;
     margin-top : 5px;
-    
 }
