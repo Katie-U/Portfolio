@@ -205,6 +205,14 @@ def contact():
 def stackBuilder():
     return render_template("projects/stackBuilder.html")
 
+@app.get("/crossStitchWeb") 
+def crossStitchWeb():
+    return render_template("projects/crossStitchWeb.html")
+
+@app.get("/ebikeDesign")
+def ebikeDesign():
+    return render_template("projects/ebikeDesign.html")
+
 
 def validate_contact(form) -> tuple[dict[str, str], dict[str, str]]:
     """Split a submitted contact form into cleaned values and per-field errors.
