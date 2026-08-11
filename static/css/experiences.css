@@ -69,3 +69,11 @@ img.experiencePhoto {
     font-size : 18px;
     margin-top : 5px;
 }
+
+a {
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    text-decoration : none;
+    color : black;
+}

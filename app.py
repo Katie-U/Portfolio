@@ -201,6 +201,10 @@ def about():
 def contact():
     return render_template("contact.html")
 
+@app.get("/stackBuilder")
+def stackBuilder():
+    return render_template("projects/stackBuilder.html")
+
 
 def validate_contact(form) -> tuple[dict[str, str], dict[str, str]]:
     """Split a submitted contact form into cleaned values and per-field errors.

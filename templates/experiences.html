@@ -11,11 +11,13 @@
     <div id = "carnegieMellon">
         <h2>Carnegie Mellon University</h2>
         <div class = "experienceSection">
-            <div id = "specificExperience">
-                <img class = "experiencePhoto" id = "southFayetteLogo" src = "{{url_for('static', filename='images-webp/south-fayette-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of South Fayette High School">
-                <p id = "type">Capstone Project</p>
-                <p id = "title">Team South Fayette</p>
-            </div>
+           <a href = "{{ url_for('stackBuilder')}}">
+                <div id = "specificExperience">  
+                    <img class = "experiencePhoto" id = "southFayetteLogo" src = "{{url_for('static', filename='images-webp/south-fayette-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of South Fayette High School">
+                    <p id = "type">Capstone Project</p>
+                    <p id = "title">Team South Fayette</p>
+                </div>
+            </a>
             <div id = "specificExperience">
                 <img class = "experiencePhoto" id = "crossStitch" src = "{{url_for('static', filename='images-webp/final-project-figma.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the cross stitch pattern website">
                 <p id = "type">Course Work</p>

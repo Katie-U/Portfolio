@@ -1,0 +1,70 @@
+div.wholePage {
+    display : flex;
+    flex-direction : column;
+}
+
+#aboveFold {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-evenly;
+    margin : 60px;
+    margin-bottom : 80px;
+}
+
+img.aboveFoldPhoto {
+    height : 650px;
+    width : 500px;
+    border-radius : 30px;
+}
+
+div.leftFold {
+    display : flex;
+    flex-direction : column;
+    width : 700px;
+    margin-top : 50px;
+}
+
+div.rightFold {
+     background-color : #D9FCE7;
+    padding-right : 40px;
+    padding-top : 40px;
+    border-radius : 50px;
+    height : 600px;
+}
+
+h1.title {
+    font-size : 68px;
+}
+
+h2.subtitle {
+    font-size : 40px;
+}
+
+p.experience {
+    font-size : 25px;
+}
+
+p.sectionHeader {
+    color :#D9FCE7;
+    font-size : 30px;
+    font-weight : bold;
+    margin-left : 250px;
+}
+
+div.section {
+    background-color :#D9FCE7;
+    height : 600px;
+    width : 1450px;
+    border-radius : 50px;
+    margin-left : 220px;
+    margin-bottom : 100px;
+}
+
+div.back {
+    display : flex;
+    flex-direction : row;
+    justify-content : flex-end;
+    height : 50px;
+    margin-right : 220px;
+}
+
