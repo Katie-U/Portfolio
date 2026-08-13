@@ -15,44 +15,46 @@
             <p class = "experience">Skills: User Research; Team Work; Rapid Prototyping; Project Management</p>
         </div>
         <div class = "rightFold">
-            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/stack-builder-poster.webp') }}" height = "650px" width = "500px" fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/ebike-prototype-1.webp') }}" height = "650px" width = "500px" fetchpriority = "low" decoding = async alt = "one screen of the prototype for the ebike app">
         </div>
     </div>
 
     <p class = "sectionHeader">Overview</p>
     <div class = "section">
-        <p class = "bodyText">This project focused on moving away from the method of education where students get trapped in one topic or subject 
-            area even before reaching college and supporting student decisions. Our goal is to increase student autonomy and 
-            internal motivation to help them find the best path forward for their future, whether that be college or straight 
-            into the job force. My team used rapid prototyping to create an AI-powered recommendation system to highlight interesting 
-            opportunities for students which we named Stacks. </p>
-             <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/capstone-group-photo.webp') }}" width = "600px" alt = "The capstone team" decoding = "async">
+        <p class = "bodyText">This project was part of a course on the basics of design principles and how to 
+            utilize them effectively. We created an interface for a hypothetical eBike that features autonomous 
+            driving based on constraints set by the professors, including how far apart alerts could be and 
+            all the information needed. Our team created both a digital interface and a cardboard prototype
+            to hold the interface. After interviewing potential users, we chose to focus on affordability 
+            and creating a product that would be accessible for students. Our design focused on using 
+            someone’s phone or existing device to display the interface and for most user interactions.   </p>
+        <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/ebike-group.webp') }}" width = "600px" alt = "The team standing with the physical prototype of the ebike handles" decoding = "async">
     </div>
     <p class = "sectionHeader">Design Process</p>
     <div id = "listSection" class = "section">
-        <p class = "bodyText">We worked with different stakeholders including parents, students, teachers, and administrators. Our research focused on 
-            what students need to succeed and how other stakeholders help provide those things. We utilized many different types of user research including:</p>
-        <ul>
-            <li>Wizard of Oz studies</li>
-            <li>Cardboard prototyping</li>
-            <li>One-on-one interviews</li>
-            <li>Focus groups</li>
-        </ul>
-        <p class = "bodyText">The information that we gathered was used to create the design and the functionality of the software. We used rapid 
-            prototyping to create and test many different ideas and capabilities. Feedback from each iteration was used to improve and direct the final version of Stacks.</p>
+        <p class = "bodyText">To start our design process, we first considered what would be important for a 
+            potential buyer and why they had not previously purchased an eBike. We conducted interviews and 
+            collected observational data about rental bikes to understand user behavior when using regular 
+            bikes around campus. An important aspect of the design was considering user needs and wants. 
+            Our team knew that anything that we created needed to be centered on what actual students need 
+            and would use. We created our first designs on paper to understand the limitations and possibilities.
+             During the design, we conducted A/B testing to understand what worked and what still needed changing.
+            We gave the participants as little background information as possible because we imagined
+            the average user as having no background experience and possibly renting the bike.</p>
     </div>
     <p class = "sectionHeader">Result</p>
     <div class = "section">
-        <p class = "bodyText">Stacks is a proposed software that helps students understand the options before them and what they may be interested in.
-             It utilizes AI to create personalized recommendations based on previous experiences and performances. Students would be able to track 
-             previous class and experiences as well as discover new opportunities. Teachers would be able to create new opportunities and suggest 
-             experiences to students. Parents would get access to a dashboard highlighting their student’s progress and interests, while limited to 
-             protect student privacy. This video demonstrates some of the basic functionality that a student would have access to.</p>
-              <video width = "700px" controls preload = "none"
-               poster = "{{ url_for('static', filename='video-web/stacks-demo.webp') }}">
-            <source src = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}" type = "video/mp4">
-            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}">Download it instead.</a>
-        </video>
+        <p class = "bodyText">The app attached to our bike was called RideWise. The app controls navigation, 
+            most alerts, and the autonomous driving functionality. The photos show what the navigation would 
+            look like with the autonomous driving both on and off. The app is designed for a phone, as students
+            would already need and have a phone and it would help to keep production costs low on the bike 
+            itself. While the app features a lot of information, it was important to the team to keep it 
+            sleek and modern. We focused on creating an app that would be functional, not just something 
+            that would look nice to use.</p>
+            <div class = "resultPhotos">
+              <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/ebike-prototype-2.webp') }}" width = "600px" alt = "The team standing with the physical prototype of the ebike handles" decoding = "async"> 
+         <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/ebike-prototype-3.webp') }}" width = "600px" alt = "The team standing with the physical prototype of the ebike handles" decoding = "async">
+         </div>
     </div>
 
     <div class = "back">

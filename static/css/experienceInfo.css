@@ -103,3 +103,8 @@ video {
     margin-left : 45px;
     margin-right : 45px;
 }
+
+div.resultPhotos {
+    display : flex;
+    flex-direction : column;
+}
