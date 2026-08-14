@@ -47,16 +47,20 @@
     <div id = "michiganTech">
         <h2>Michigan Technological University</h2>
         <div class = "experienceSection">
+            <a href = "{{ url_for('hideNew')}}">
             <div id = "specificExperience">
                 <img class = "experiencePhoto" id = "hideLogo" src = "{{url_for('static', filename='images-webp/hide-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of HIDE enterprise">
                 <p id = "type">Capstone Project</p>
                 <p id = "title">HIDE Enterprise</p>
             </div>
+            </a>
+            <a href = "{{ url_for('heptileApp')}}">
             <div id = "specificExperience">
                 <img class = "experiencePhoto" id = "heptileApp" src = "{{url_for('static', filename='images-webp/michigan-heptile-tracking.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the cross stitch pattern website">
                 <p id = "type">Course Work</p>
-                <p id = "title">Michigan Heptile Tracking App</p>
+                <p id = "title">Michigan Herptile Tracking App</p>
             </div>
+            </a>
             <div id = "specificExperience">
                 <img class = "experiencePhoto" id = "modelerPhoto" src = "{{url_for('static', filename='images-webp/modeler-2.webp') }}" fetchpriority = "low" decoding = async alt = "example screen from design work for Modeler">
                 <p id = "type">Experience</p>

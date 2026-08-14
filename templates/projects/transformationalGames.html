@@ -21,39 +21,36 @@
 
     <p class = "sectionHeader">Overview</p>
     <div class = "section">
-        <p class = "bodyText">This project focused on moving away from the method of education where students get trapped in one topic or subject 
-            area even before reaching college and supporting student decisions. Our goal is to increase student autonomy and 
-            internal motivation to help them find the best path forward for their future, whether that be college or straight 
-            into the job force. My team used rapid prototyping to create an AI-powered recommendation system to highlight interesting 
-            opportunities for students which we named Stacks. </p>
-             <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/capstone-group-photo.webp') }}" width = "600px" alt = "The capstone team" decoding = "async">
+        <p class = "bodyText">This class was part of Carnegie Mellon’s Center for Transformational Play. The focus of this class was 
+            on the design of physical games and the fundamentals of designing under time constraints. Each design cycle lasted about 
+            2 weeks, from initial idea creation to final prototype. We created physical games, such as card games. Since the games 
+            were transformational, it was important to consider who the sponsor was and what they wanted the players to take from 
+            the experience of playing the game. Each project was extremely different from the last, in terms of sponsor need and 
+            user demographics. We also worked in pairs and teams to understand the challenges that arise from designing as a group
+            and how to overcome those constraints. We needed to understand how to leverage everyone’s experiences and knowledge 
+            to build something better. The photos included here are part of a game focused on helping students to figure out what 
+            they want to do after school. The game functions by asking each player to imagine themselves in a different position 
+            and how they would respond to potential problems. Players then rate each others’ responses based on creativity or humor, 
+            depending on what the judge decides. </p>
+             <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/game-problems.webp') }}" height = " 320px" alt = "The capstone team" decoding = "async">
     </div>
     <p class = "sectionHeader">Design Process</p>
-    <div id = "listSection" class = "section">
-        <p class = "bodyText">We worked with different stakeholders including parents, students, teachers, and administrators. Our research focused on 
-            what students need to succeed and how other stakeholders help provide those things. We utilized many different types of user research including:</p>
-        <ul>
-            <li>Wizard of Oz studies</li>
-            <li>Cardboard prototyping</li>
-            <li>One-on-one interviews</li>
-            <li>Focus groups</li>
-        </ul>
-        <p class = "bodyText">The information that we gathered was used to create the design and the functionality of the software. We used rapid 
-            prototyping to create and test many different ideas and capabilities. Feedback from each iteration was used to improve and direct the final version of Stacks.</p>
+    <div id = "gameDesignSection" class = "section">
+        <p class = "bodyText">Each game design iteration was broken into three distinct parts: brainstorming, prototyping, and testing.</p>
+        <p class = "bodyText"><strong>Brainstorming</strong>: This stage of the process included speaking to the sponsors and understanding what they needed.
+             The class would ask questions to understand the problem space and what kind of transformation was desired. We would then use 
+             this information to brainstorm using processes such as crazy-8s, mind maps, and storyboarding. </p>
+         <p class = "bodyText"><strong>Prototyping</strong>: During this stage we created prototypes of different fidelities, often focusing on the functionality
+            of the game rather than the aesthetics. Since we were creating transformational games, it was important to understand if the mechanics
+            worked as intended and if the players gained anything from the experience. This stage of the process was often revisited, with 
+            most projects needing 3 prototypes.</p>   
+        <p class = "bodyText"><strong>Testing</strong>: To test our games we used a specific process used in the Center for Transformational Play called EOTA. 
+            This uses experiences from players (E); observations made by the creator or other participants (O); theories about why something 
+            happened (T); and advice from the participants and other observers (A). This testing process allowed us to understand what was
+            happening and why it was happening, but the play testers always knew that they were experiencing an incomplete game. Including 
+            the advice from the play testers allowed me to understand where they thought the experience lacked and what they would expect from a game. </p> 
     </div>
-    <p class = "sectionHeader">Result</p>
-    <div class = "section">
-        <p class = "bodyText">Stacks is a proposed software that helps students understand the options before them and what they may be interested in.
-             It utilizes AI to create personalized recommendations based on previous experiences and performances. Students would be able to track 
-             previous class and experiences as well as discover new opportunities. Teachers would be able to create new opportunities and suggest 
-             experiences to students. Parents would get access to a dashboard highlighting their student’s progress and interests, while limited to 
-             protect student privacy. This video demonstrates some of the basic functionality that a student would have access to.</p>
-              <video width = "700px" controls preload = "none"
-               poster = "{{ url_for('static', filename='video-web/stacks-demo.webp') }}">
-            <source src = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}" type = "video/mp4">
-            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}">Download it instead.</a>
-        </video>
-    </div>
+   
 
     <div class = "back">
         <a class = "navLink" href = "{{ url_for('experiences')}}#carnegieMellon">

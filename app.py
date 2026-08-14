@@ -217,6 +217,14 @@ def ebikeDesign():
 def transformationalGames():
     return render_template("projects/transformationalGames.html")
 
+@app.get("/hideNew")
+def hideNew():
+    return render_template("/projects/hideNew.html")
+
+@app.get("/heptileApp")
+def heptileApp():
+    return render_template("/projects/heptileApp.html")
+
 def validate_contact(form) -> tuple[dict[str, str], dict[str, str]]:
     """Split a submitted contact form into cleaned values and per-field errors.
 

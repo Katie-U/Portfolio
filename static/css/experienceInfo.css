@@ -76,6 +76,23 @@ ul {
     margin-left : 40px;
 }
 
+#gameDesignSection {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-start;
+    height : 620px;
+    padding-top : 50px;
+}
+
+#schedulerDiv {
+    height : 720px;
+}
+
+#herptileSection {
+    font-size : 25px;
+    height : 500px;
+}
+
 div.back {
     display : flex;
     flex-direction : row;

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}HIDE{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div class = "leftFold">
+            <h1 class = "title">Humane Interface Design Enterprise (HIDE)</h1>
+            <h2 class = "subtitle">Capstone Project</h2>
+            <p class = "experience">Skills: Team Work; Rapid Prototyping; Project Management</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/hide-logo.webp') }}"  width = "500px" fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div class = "section">
+        <p class = "bodyText">At Michigan Tech, I participated in the enterprise program. The enterprise program is designed to provide practical 
+            experience for students, through working with real world problems and clients. I was a part of the Humane Interface Design Enterprise 
+            (HIDE). This enterprise focuses on software development and usability. I was a member of the Human Factors team, which was dedicated 
+            to helping the other teams create their interfaces and designing the user experience. We often worked on multiple projects at the same
+            time. During that time, I worked on a number of projects with my team, the two main projects that I worked on are explained here. </p>
+             <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/hide-group.webp') }}" width = "550px" alt = "The capstone team" decoding = "async">
+    </div>
+    <p class = "sectionHeader">CS Scheduler</p>
+    <div id = "schedulerDiv" class = "section">
+        <p class = "bodyText">The computer science department at Michigan Tech wanted a new way of scheduling classes and visualising the data as
+            they worked. Our team was asked to create a prototype for what the interface would look like. We interviewed the development team
+            and department staff responsible for the scheduling of classes. Based on these interviews, our team developed this prototype and 
+            presented it to the development team. It is meant to mimic the layout and organization of Google Calendar because the department 
+            staff was already familiar with that product. They had previously been using spreadsheets, so presenting the information visually 
+            helped to show conflicts that could occur between professors or specific classes. The screen is showing what it would look like to 
+            view the schedule of a specific professor, while the calendar demonstrates what it would look like to see multiple professors at the 
+            same time. This prototype was an early design for the project. Before the completion of this project, I was moved to a different project.</p>
+        <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/cs-scheduler-prototype.webp') }}" height = "300px" alt = "The capstone team" decoding = "async">
+    </div>
+    <p class = "sectionHeader">YooPapers</p>
+    <div class = "section">
+        <p class = "bodyText">This app is meant to assist people who serve legal papers in the Upper Peninsula of Michigan. I created a basic wireframe
+            prototype for the development team. This was meant to serve as a proof of concept for the client as well as guide the direction of the
+            development team. The design is based on interviews with the client, who both served papers and oversaw others on his team. The designs
+            were iterated on based on client feedback in order to better serve their needs. This app would be usable as both a website and as a mobile
+            app, with the mobile app assisting in showing proof of papers served. Since someone serving papers would not always have internet access,
+            it was important to store information, not just send it. I was moved to a different project before the designs were finalized and 
+            the completion of the project.</p>
+        <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/yoopapers-phone-2.webp') }}" height = "330px" alt = "The capstone team" decoding = "async">
+    </div>
+    </div>
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#michiganTech">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}
