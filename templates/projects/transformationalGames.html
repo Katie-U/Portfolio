@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Transformational Game Design{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div class = "leftFold">
+            <h1 class = "title">Transformational Game Design</h1>
+            <h2 class = "subtitle">Course Work</h2>
+            <p class = "experience">Skills: Rapid Prototyping; Player Testing; Team Work</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/game-cards.webp') }}" height = "450px"  fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div class = "section">
+        <p class = "bodyText">This project focused on moving away from the method of education where students get trapped in one topic or subject 
+            area even before reaching college and supporting student decisions. Our goal is to increase student autonomy and 
+            internal motivation to help them find the best path forward for their future, whether that be college or straight 
+            into the job force. My team used rapid prototyping to create an AI-powered recommendation system to highlight interesting 
+            opportunities for students which we named Stacks. </p>
+             <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/capstone-group-photo.webp') }}" width = "600px" alt = "The capstone team" decoding = "async">
+    </div>
+    <p class = "sectionHeader">Design Process</p>
+    <div id = "listSection" class = "section">
+        <p class = "bodyText">We worked with different stakeholders including parents, students, teachers, and administrators. Our research focused on 
+            what students need to succeed and how other stakeholders help provide those things. We utilized many different types of user research including:</p>
+        <ul>
+            <li>Wizard of Oz studies</li>
+            <li>Cardboard prototyping</li>
+            <li>One-on-one interviews</li>
+            <li>Focus groups</li>
+        </ul>
+        <p class = "bodyText">The information that we gathered was used to create the design and the functionality of the software. We used rapid 
+            prototyping to create and test many different ideas and capabilities. Feedback from each iteration was used to improve and direct the final version of Stacks.</p>
+    </div>
+    <p class = "sectionHeader">Result</p>
+    <div class = "section">
+        <p class = "bodyText">Stacks is a proposed software that helps students understand the options before them and what they may be interested in.
+             It utilizes AI to create personalized recommendations based on previous experiences and performances. Students would be able to track 
+             previous class and experiences as well as discover new opportunities. Teachers would be able to create new opportunities and suggest 
+             experiences to students. Parents would get access to a dashboard highlighting their student’s progress and interests, while limited to 
+             protect student privacy. This video demonstrates some of the basic functionality that a student would have access to.</p>
+              <video width = "700px" controls preload = "none"
+               poster = "{{ url_for('static', filename='video-web/stacks-demo.webp') }}">
+            <source src = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}" type = "video/mp4">
+            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/stacks-demo.mp4') }}">Download it instead.</a>
+        </video>
+    </div>
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#carnegieMellon">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}

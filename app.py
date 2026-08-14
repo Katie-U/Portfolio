@@ -213,6 +213,9 @@ def crossStitchWeb():
 def ebikeDesign():
     return render_template("projects/ebikeDesign.html")
 
+@app.get("/transformationalGames")
+def transformationalGames():
+    return render_template("projects/transformationalGames.html")
 
 def validate_contact(form) -> tuple[dict[str, str], dict[str, str]]:
     """Split a submitted contact form into cleaned values and per-field errors.
