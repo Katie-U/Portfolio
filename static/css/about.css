@@ -15,8 +15,10 @@ div.aboveTheFold {
     padding-top : 100px;
     display : flex; 
     padding-bottom: 60px;
+    padding-left : 270px;
+    padding-right : 300px;
     align-items : flex-end;
-    justify-content : space-around;
+    justify-content : space-between;
     flex-direction : row-reverse;
 }
 
@@ -38,7 +40,7 @@ div.aboveTheFold {
 #nameAndTitle {
     display : flex;
     flex-direction : column;
-    align-items : flex-end;
+    align-items : flex-start;
 }
 
 h1 {
@@ -48,8 +50,8 @@ h1 {
 }
 
 #subheading {
-    width : 400px;
-   font-size : 30px;
+    width : 600px;
+   font-size : 27px;
 }
 
 h2 {

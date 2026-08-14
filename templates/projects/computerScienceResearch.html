@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Computer Science Education Research{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div id = "researchTitle" class = "leftFold">
+            <h1 class = "title">Computer Science Education Research</h1>
+            <h2 class = "subtitle">Research Experience</h2>
+            <p class = "experience">Skills: Team Work; Research; Project Management</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/modeler-2.webp') }}"  height = "350px" fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div id = "researchOverview" class = "section">
+        <p class = "bodyText">At Michigan Tech, I worked in two computer science education research labs. I worked on many projects, one of
+             which I have highlighted below. Our work focused on getting students engaged in the material and helping to better utilize 
+             existing technologies. We used participatory design practices to include professors and students. These projects helped me 
+             to understand the design process and how to better work with those of different backgrounds. The lab spaces were designed to 
+             bring together people with different knowledge, so we were better able to help those who had not experienced computer science 
+             education in the past.</p>
+    </div>
+    <p class = "sectionHeader">Modeler</p>
+    <div id = "modelerDiv" class = "section">
+        <div class = "modelerText">
+        <p class = "bodyText">In order to teach computational thinking skills in k-12 classrooms not based around computer science, we developed Modeler.
+            Modeler serves to structure the experience of modeling a topic, one that might not normally be modeled such as the relationships in a novel.
+            This is accomplished in three steps: diagramming the relationships through the use of different shapes, arrows, and labels; providing
+            measurements or changes in the relationships; and a moving or changing simulation that is created by the system to display the relationships
+            as defined. For this project, I defined the user work flow and created the user interface. This was accomplished by talking with computer 
+            science professors at Michigan Tech to understand what were the steps of learning computer science and what could be applied to other topics.
+            The design was also based on the ideas and feedback of the primary investigator. The design is meant to invoke the feeling of more traditional 
+            educational software, but not feel outdated, but these are the early wireframes. An important aspect of the design was to have a place for 
+            students to reflect on their process and take notes about what they were doing. It was not enough for them to just mindlessly experience the 
+            simulation, but to reflect on the process.</p> 
+            
+        <p class = "bodyText">I created an animation based on the early interface prototype to help understand the process and 
+            what using the system could actually look like, which can be seen here. It describes a basic photosynthesis process. This animation was meant
+            to help the developers better understand the relationship between pages and what different components do.</p>
+        </div>
+        <!-- preload="none" plus a poster means the page costs nothing until
+             someone actually presses play. -->
+        <video width = "600px" controls preload = "none"
+               poster = "{{ url_for('static', filename='video-web/modeler-concept-animation.webp') }}">
+            <source src = "{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}" type = "video/mp4">
+            Your browser cannot play this video. <a href = "{{ url_for('static', filename='video-web/modeler-concept-animation.mp4') }}">Download it instead.</a>
+        </video>
+    </div>
+   
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#michiganTech">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}

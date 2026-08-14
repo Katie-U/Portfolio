@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Esports Statistician{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div class = "leftFold">
+            <h1 class = "title">Esports Statistician</h1>
+            <h2 class = "subtitle">Leadership Experience</h2>
+            <p class = "experience">Skills: Team Work; Leadership; Project Management; Data Management</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/esports-leadership.webp') }}"  width = "650px" fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div class = "section">
+        <p class = "bodyText">
+    </div>
+  
+    </div>
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#michiganTech">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}

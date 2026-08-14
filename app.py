@@ -225,6 +225,18 @@ def hideNew():
 def heptileApp():
     return render_template("/projects/heptileApp.html")
 
+@app.get("/computerScienceResearch")
+def computerScienceResearch():
+    return render_template("/projects/computerScienceResearch.html")
+
+@app.get("/esports.html")
+def esports():
+    return render_template("/projects/esports.html")
+
+@app.get("/clubPresident")
+def clubPresident():
+    return render_template("/projects/clubPresident.html")
+
 def validate_contact(form) -> tuple[dict[str, str], dict[str, str]]:
     """Split a submitted contact form into cleaned values and per-field errors.
 

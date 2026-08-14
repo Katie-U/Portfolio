@@ -23,6 +23,10 @@ div.leftFold {
     margin-top : 50px;
 }
 
+#researchTitle {
+    width : 730px;
+}
+
 /*div.rightFold {
      background-color : #D9FCE7;
     padding-right : 40px;
@@ -91,6 +95,20 @@ ul {
 #herptileSection {
     font-size : 25px;
     height : 500px;
+}
+
+#researchOverview {
+    height : 400px;
+    font-size : 25px;
+}
+
+#modelerDiv {
+    height : 850px;
+}
+
+div.modelerText {
+    display : flex;
+    flex-direction : column;
 }
 
 div.back {
