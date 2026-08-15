@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Cross Stitch Pattern Maker{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div class = "leftFold">
+            <h1 class = "title">Cross Stitch Pattern Maker Website</h1>
+            <h2 class = "subtitle">Course Work</h2>
+            <p class = "experience">Skills: Design; HTML, CSS, JavaScript</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "crossstitch" src = "{{ url_for('static', filename='images-webp/final-project-figma.webp') }}" width = "600px" alt = "Final Figma design" decoding = "async">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div class = "section">
+        <p id ="crossStitchText" class = "bodyText">This website was created for a class assignment in Programming Usable Interfaces. The focus of 
+            this assignment was to create a usable and functional website. This website is designed to allow the user to create 
+            new cross stitch patterns using the grid and the color picker. A major purpose of this assignment was to understand
+             using libraries and their functionality for a project. The color picker utilizes two libraries, one for the search 
+             feature itself and one for the auto-complete functionality of the search. This project is a proof of concept meant 
+             to highlight experience with HTML, CSS, and JavaScript and the general development process. As part of this assignment,
+              our class underwent design and code reviews to demonstrate understanding of the process. If you would like to view 
+              the website, <a href = "https://kulinski-cmu.github.io/pui-homework-kulinski/final-project/" target = "_blank">please click on this link.</a></p>
+             
+    </div>
+  
+    
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#carnegieMellon">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}

@@ -1,24 +1,39 @@
 #firstImg{
     height : 500px;
-}
-
-div {
-    background-color: #F5F5F5;
-    font-family : "optima", sans-serif;
+    border-radius : 50px;
+    width : 350px;
+    object-fit : cover;
+    object-position : center;
 }
 
 div.aboveTheFold {
-    padding-top : 60px;
+    padding-top : 100px;
     display : flex; 
     padding-bottom: 60px;
-    align-items : center;
-    justify-content : space-evenly;
+    justify-content : space-around;
+    flex-direction : row-reverse;
+    align-items : flex-end;
+}
+
+#leftFold {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-end;
 }
 
 #rightFold {
+    background-color : #D9FCE7;
+    padding-right : 40px;
+    padding-top : 30px;
+    border-radius : 50px;
+    height : 475px;
+}
+
+
+#nameAndTitle {
     display : flex;
     flex-direction : column;
-    width : 50%;
+    align-items : flex-end;
 }
 
 #personalLinks {
@@ -26,9 +41,13 @@ div.aboveTheFold {
     align-items : center;
 }
 
+/*img.linkPhoto {
+    padding : 10px;
+}*/
+
 #linkedinLogo {
-    height : 60px;
-    width : 60px;
+    height : 70px;
+    width : 70px;
 }
 
 #githubLogo {
@@ -36,38 +55,40 @@ div.aboveTheFold {
     width : 40px;
 }
 
-h1 {
-    font-size : 60px;
+/*#linkBackground {
+    background-color : #D9FCE7;
+    border-radius : 10px;
+    padding-right : 10px;
+    padding-top : 10px;
+    height : 40px;
+    width : 40px;
 }
+*/
 
-nav {
+#buttons {
     display : flex;
     flex-direction : row;
-    justify-content: space-between;
-    align-items : flex-end;
-    height : 90px;
-    padding-right : 20px;
-    padding-left : 10px;
-    font-size : 20px;
-    background-color : #307816;
+    justify-content : space-evenly;
+    padding-top : 100px;
 }
 
-img.homePhoto {
-    background-color : #307816;
-}
-
-a.navLink {
-    text-decoration : none;
+.button {
+    background-color : #D9FCE7;
+    border : none;
+    padding : 15px;
+    border-radius : 10px;
+    width : 350px;
+    height : 130px;
     color : black;
+    font-weight : bold;
+    font-size : 25px;
+    cursor : pointer;
 }
 
-a.navLink:hover {
-    font-weight : bold;
+.button:hover {
+    background-color : #B4D1C0;
 }
 
-a.navLink.active {
-    font-weight : bold;
-}
 
 #navHeaders {
     width : 400px;
@@ -91,9 +112,6 @@ div.undergraduate {
     height : 300px;
 }
 
-h2 {
-    font-size : 40px;
-}
 
 p.text {
     font-size : 25px;

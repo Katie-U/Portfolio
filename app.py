@@ -2,10 +2,18 @@ from __future__ import annotations
 
 import mimetypes
 import os
+import re
 from dataclasses import dataclass
 from urllib.parse import urljoin
 
+import resend
+from dotenv import load_dotenv
 from flask import Flask, Response, abort, redirect, render_template, request, url_for
+
+# Local development reads secrets from .env; on Railway the same names are set
+# as service variables, and load_dotenv leaves existing environment values
+# alone, so this is a no-op there.
+load_dotenv()
 
 # Windows has no registry entry for WebP, so the dev server hands these out as
 # application/octet-stream. Register it up front rather than depending on
@@ -26,6 +34,28 @@ SITE_DESCRIPTION = (
 # fall back to whichever host the request came in on, which is right for local
 # development but lets duplicate hostnames each claim to be canonical.
 CONFIGURED_SITE_URL = os.environ.get("SITE_URL", "").rstrip("/")
+
+# Contact form delivery, via Resend. CONTACT_FROM_ADDRESS has to sit on a domain
+# verified in the Resend dashboard -- the shared onboarding@resend.dev sender
+# works without any DNS setup but will only deliver to the Resend account's own
+# address, which is fine for testing and not for production.
+CONTACT_FROM_ADDRESS = os.environ.get("CONTACT_FROM_ADDRESS", "onboarding@resend.dev")
+CONTACT_TO_ADDRESS = os.environ.get("CONTACT_TO_ADDRESS", "")
+
+# Long enough for a real message, short enough that nobody can post a novel.
+FIELD_MAX_LENGTHS = {"name": 100, "email": 254, "subject": 150, "message": 5000}
+
+# Deliberately loose: the only address format that really matters is the one
+# Resend will accept as a reply-to, and over-strict regexes reject valid mail.
+EMAIL_PATTERN = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+CONTACT_SENT_MESSAGE = "Thanks! Your message is on its way."
+CONTACT_UNAVAILABLE_MESSAGE = (
+    "The contact form is not available right now. Please reach out on LinkedIn."
+)
+CONTACT_FAILED_MESSAGE = (
+    "Something went wrong sending your message. Please try again in a moment."
+)
 
 
 @dataclass(frozen=True)
@@ -160,6 +190,159 @@ def index():
         undergrad_projects=projects_in("undergrad"),
         grad_projects=projects_in("grad"),
     )
+
+
+@app.get("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.get("/contact")
+def contact():
+    return render_template("contact.html")
+
+@app.get("/stackBuilder")
+def stackBuilder():
+    return render_template("projects/stackBuilder.html")
+
+@app.get("/crossStitchWeb") 
+def crossStitchWeb():
+    return render_template("projects/crossStitchWeb.html")
+
+@app.get("/ebikeDesign")
+def ebikeDesign():
+    return render_template("projects/ebikeDesign.html")
+
+@app.get("/transformationalGames")
+def transformationalGames():
+    return render_template("projects/transformationalGames.html")
+
+@app.get("/hideNew")
+def hideNew():
+    return render_template("/projects/hideNew.html")
+
+@app.get("/heptileApp")
+def heptileApp():
+    return render_template("/projects/heptileApp.html")
+
+@app.get("/computerScienceResearch")
+def computerScienceResearch():
+    return render_template("/projects/computerScienceResearch.html")
+
+@app.get("/esports.html")
+def esports():
+    return render_template("/projects/esports.html")
+
+@app.get("/clubPresident")
+def clubPresident():
+    return render_template("/projects/clubPresident.html")
+
+def validate_contact(form) -> tuple[dict[str, str], dict[str, str]]:
+    """Split a submitted contact form into cleaned values and per-field errors.
+
+    Errors are keyed by field name so the page can mark the offending input
+    rather than showing one generic complaint at the top.
+    """
+    values: dict[str, str] = {}
+    errors: dict[str, str] = {}
+
+    for field, limit in FIELD_MAX_LENGTHS.items():
+        value = (form.get(field) or "").strip()
+        if not value:
+            errors[field] = "This field is required."
+        elif len(value) > limit:
+            errors[field] = f"Please keep this under {limit} characters."
+        values[field] = value
+
+    if "email" not in errors and not EMAIL_PATTERN.match(values["email"]):
+        errors["email"] = "Please enter a valid email address."
+
+    return values, errors
+
+
+def send_contact_email(values: dict[str, str]) -> None:
+    """Hand a validated submission to Resend. Raises if it cannot be sent."""
+    resend.api_key = os.environ["RESEND_API_KEY"]
+    resend.Emails.send(
+        {
+            "from": f"{SITE_NAME} <{CONTACT_FROM_ADDRESS}>",
+            "to": [CONTACT_TO_ADDRESS],
+            # The visitor's own address, so replying from the inbox reaches them
+            # directly. It is never used as the sender, which would fail SPF and
+            # land the mail in spam.
+            "reply_to": values["email"],
+            "subject": f"Portfolio contact: {values['subject']}",
+            "text": (
+                f"From: {values['name']} <{values['email']}>\n"
+                f"Subject: {values['subject']}\n\n"
+                f"{values['message']}\n"
+            ),
+        }
+    )
+
+
+@app.post("/contact")
+def contact_submit():
+    """Email a contact form submission to CONTACT_TO_ADDRESS through Resend.
+
+    Answers JSON to the page's fetch call and a re-rendered contact page to a
+    plain form post, so the form still works with JavaScript switched off.
+    """
+    wants_json = request.is_json
+    form = request.get_json(silent=True) or request.form
+
+    def respond(status_code: int, message: str, errors: dict[str, str] | None = None):
+        ok = status_code == 200
+        if wants_json:
+            payload = {"ok": ok, "message": message}
+            if errors:
+                payload["errors"] = errors
+            return payload, status_code
+        return (
+            render_template(
+                "contact.html",
+                status_message=message,
+                status_ok=ok,
+                errors=errors or {},
+                # Nobody should have to retype a message because one field was
+                # wrong -- but a successful send starts from an empty form.
+                values={} if ok else form,
+            ),
+            status_code,
+        )
+
+    # Bots fill in every field they can find. This one is hidden from people, so
+    # anything in it means the submission is junk. Report success anyway: a bot
+    # that gets an error learns to try again, one that gets a 200 does not.
+    if (form.get("website") or "").strip():
+        return respond(200, CONTACT_SENT_MESSAGE)
+
+    values, errors = validate_contact(form)
+    if errors:
+        return respond(400, "Please fix the highlighted fields.", errors)
+
+    if not os.environ.get("RESEND_API_KEY") or not CONTACT_TO_ADDRESS:
+        app.logger.error(
+            "Contact form is not configured: set RESEND_API_KEY and "
+            "CONTACT_TO_ADDRESS in the environment."
+        )
+        return respond(503, CONTACT_UNAVAILABLE_MESSAGE)
+
+    try:
+        send_contact_email(values)
+    except Exception:
+        # Covers both Resend's own errors and the network failing underneath it;
+        # either way the visitor gets the same message and the detail goes to
+        # the Railway logs.
+        app.logger.exception("Resend rejected a contact form submission")
+        return respond(502, CONTACT_FAILED_MESSAGE)
+
+    return respond(200, CONTACT_SENT_MESSAGE)
+
+
+@app.get("/experiences")
+def experiences():
+    return render_template("experiences.html")
 
 
 @app.get("/projects/<slug>")

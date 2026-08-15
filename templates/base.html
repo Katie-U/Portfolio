@@ -23,34 +23,47 @@
 
         <!-- PNG rather than WebP: Safari still will not render a WebP favicon. -->
         <link rel="icon" href="{{ url_for('static', filename='images/home-icon.png') }}">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home-page.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}"/>
         {% block styles %}{% endblock %}
         {% block structured_data %}{% endblock %}
     </head>
 
     <body>
         <nav>
-            <div>
-                <a id = "homeLogo" href = "{{ url_for('index') }}">
-                    <img class = "homePhoto" src = "{{ url_for('static', filename='images-webp/home-icon.webp') }}" height = "60px" alt = "{{ owner_name }} — home">
+            
+                <a class = "navLink" href = "{{ url_for('index') }}" {% if request.endpoint == 'index' %}aria-current = "page"{% endif %}>
+                    <p>Home</p>
                 </a>
-            </div>
-            <div id = "navHeaders">
-                <a class = "navLink" href = "{{ url_for('index') }}#undergradDiv">
-                    <p>Undergraduate</p>
+                <a class = "navLink" href = "{{ url_for('experiences') }}" {% if request.endpoint == 'experiences' %}aria-current = "page"{% endif %}>
+                    <p>Experiences</p>
                 </a>
-                <a class = "navLink" href = "{{ url_for('index') }}#gradDiv">
-                    <p>Graduate</p>
+                <a class = "navLink" href = "{{ url_for('about') }}" {% if request.endpoint == 'about' %}aria-current = "page"{% endif %}>
+                    <p>About</p>
+                </a>
+                <a class = "navLink" href = "{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}aria-current = "page"{% endif %}>
+                    <p>Contact</p>
                 </a>
                 <!--
                 <a class = "navLink" href = "{{ url_for('index') }}#aboutMeDiv">
                     <p>About Me</p>
                 </a>
                 -->
-            </div>
+            
         </nav>
 
         {% block content %}{% endblock %}
+
+         <footer>
+            <p class = "footer">Katie Ulinski - 2026</p>
+            <div id = "footerLinks">
+                <a class = "footerLink" href = "{{url_for('index') }}">
+                    <p>Home</p>
+                </a>
+                <a class = "footerLink" href = "{{url_for('contact') }}">
+                    <p>Contact</p>
+                </a>
+            </div>
+        </footer>
 
         <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     </body>

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Transformational Game Design{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div class = "leftFold">
+            <h1 class = "title">Transformational Game Design</h1>
+            <h2 class = "subtitle">Course Work</h2>
+            <p class = "experience">Skills: Rapid Prototyping; Player Testing; Team Work</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/game-cards.webp') }}" height = "450px"  fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div class = "section">
+        <p class = "bodyText">This class was part of Carnegie Mellon’s Center for Transformational Play. The focus of this class was 
+            on the design of physical games and the fundamentals of designing under time constraints. Each design cycle lasted about 
+            2 weeks, from initial idea creation to final prototype. We created physical games, such as card games. Since the games 
+            were transformational, it was important to consider who the sponsor was and what they wanted the players to take from 
+            the experience of playing the game. Each project was extremely different from the last, in terms of sponsor need and 
+            user demographics. We also worked in pairs and teams to understand the challenges that arise from designing as a group
+            and how to overcome those constraints. We needed to understand how to leverage everyone’s experiences and knowledge 
+            to build something better. The photos included here are part of a game focused on helping students to figure out what 
+            they want to do after school. The game functions by asking each player to imagine themselves in a different position 
+            and how they would respond to potential problems. Players then rate each others’ responses based on creativity or humor, 
+            depending on what the judge decides. </p>
+             <img id = "capstone1" src = "{{ url_for('static', filename='images-webp/game-problems.webp') }}" height = " 320px" alt = "The capstone team" decoding = "async">
+    </div>
+    <p class = "sectionHeader">Design Process</p>
+    <div id = "gameDesignSection" class = "section">
+        <p class = "bodyText">Each game design iteration was broken into three distinct parts: brainstorming, prototyping, and testing.</p>
+        <p class = "bodyText"><strong>Brainstorming</strong>: This stage of the process included speaking to the sponsors and understanding what they needed.
+             The class would ask questions to understand the problem space and what kind of transformation was desired. We would then use 
+             this information to brainstorm using processes such as crazy-8s, mind maps, and storyboarding. </p>
+         <p class = "bodyText"><strong>Prototyping</strong>: During this stage we created prototypes of different fidelities, often focusing on the functionality
+            of the game rather than the aesthetics. Since we were creating transformational games, it was important to understand if the mechanics
+            worked as intended and if the players gained anything from the experience. This stage of the process was often revisited, with 
+            most projects needing 3 prototypes.</p>   
+        <p class = "bodyText"><strong>Testing</strong>: To test our games we used a specific process used in the Center for Transformational Play called EOTA. 
+            This uses experiences from players (E); observations made by the creator or other participants (O); theories about why something 
+            happened (T); and advice from the participants and other observers (A). This testing process allowed us to understand what was
+            happening and why it was happening, but the play testers always knew that they were experiencing an incomplete game. Including 
+            the advice from the play testers allowed me to understand where they thought the experience lacked and what they would expect from a game. </p> 
+    </div>
+   
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#carnegieMellon">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}

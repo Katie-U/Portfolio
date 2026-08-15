@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Michigan Herptile Tracking App{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experienceInfo.css') }}"/>
+{% endblock %}
+
+{% block content %}
+<div class = "wholePage">
+    <div id = "aboveFold">
+        <div class = "leftFold">
+            <h1 class = "title">Michigan Herptile Tracking App</h1>
+            <h2 class = "subtitle">Course Work</h2>
+            <p class = "experience">Skills: Team Work; Mobile App Design; Mobile App Programming</p>
+        </div>
+        <div class = "rightFold">
+            <img class = "aboveFoldPhoto" id = "stackbuilderposter" src = "{{url_for('static', filename='images-webp/michigan-heptile-tracking.webp') }}"  width = "300px" fetchpriority = "low" decoding = async alt = "early prototype and research material for Stacks">
+        </div>
+    </div>
+
+    <p class = "sectionHeader">Overview</p>
+    <div id = "herptileSection" class = "section">
+        <p class = "bodyText">This mobile app is designed to track and record herptiles within Michigan. We began the process by 
+            interviewing our sponsor and understanding what a typical user looked like and how they may interact with our app. 
+            The design, of which one screen can be seen above, was designed to be used outdoors, so we focused on creating something
+            that could be understood regardless of conditions. The typical user could know everything about a particular species 
+            or only know the name, so the information entry needed to be modular. Our team designed and built an Android app and 
+            worked with graduate students to facilitate user testing. We focused on programming the app as a proof of concept and 
+            with enough functionality to allow for testing.</p>
+    </div>
+    </div>
+
+    <div class = "back">
+        <a class = "navLink" href = "{{ url_for('experiences')}}#michiganTech">
+            <p>back</p>
+        </a>
+    </div>
+</div>
+
+
+{%endblock content %}

@@ -1,0 +1,179 @@
+body {
+    background-color: #377C51;
+    font-family : "georgia";
+}
+
+h1 {
+    display : flex;
+    justify-content : center;
+    font-size : 60px;
+    font-weight : bold;
+    color :#1F0F0D;
+    padding-top : 100px;
+}
+
+#contactMethods {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-evenly;
+    margin-top : 100px;
+}
+
+#contactForm {
+    background-color : #D9FCE7;
+    width : 600px;
+    /* Field errors appear and disappear under the inputs, so the card grows
+       rather than clipping them. */
+    min-height : 680px;
+    border-radius : 50px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    padding-top : 40px;
+    padding-bottom : 40px;
+}
+
+input,
+textarea {
+    width : 450px;
+    height : 40px;
+    background-color : #3C5747;
+    border-radius : 15px;
+    border : none;
+    margin : 10px 10px 0 10px;
+    color :#D9FCE7;
+    padding-left : 30px;
+    font-family : inherit;
+    font-size : 15px;
+    box-sizing : content-box;
+    border : 2px solid #D9FCE7;
+}
+
+div.infoText {
+    display : flex;
+    flex-direction : row;
+    width: inherit;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right : 120px;
+}
+
+#star {
+    font-weight : bold;
+    font-size : 20px;
+    padding-right : 10px;
+}
+
+#explaination {
+    font-size : 12px;
+}
+
+input:hover,
+textarea:hover {
+    border : 2px solid #1F0F0D;
+}
+
+::placeholder {
+    color : #D9FCE7;
+}
+
+textarea.messageInput {
+    height : 250px;
+    padding-top : 10px;
+    resize : vertical;
+}
+
+/* Labels are kept for screen readers; the placeholders carry the visual
+   labelling. */
+.visuallyHidden {
+    position : absolute;
+    width : 1px;
+    height : 1px;
+    overflow : hidden;
+    clip : rect(0 0 0 0);
+    white-space : nowrap;
+}
+
+/* The bot trap. display:none rather than off-screen positioning, because a
+   real person must never be able to reach it. */
+.honeypot {
+    display : none;
+}
+
+p.fieldError {
+    width : 480px;
+    margin : 4px 10px 0 10px;
+    min-height : 1em;
+    color : #7A1F1F;
+    font-size : 14px;
+}
+
+#formStatus {
+    margin-top : 15px;
+    min-height : 1em;
+    font-size : 16px;
+    font-weight : bold;
+}
+
+#formStatus.statusOk {
+    color : #1F0F0D;
+}
+
+#formStatus.statusError {
+    color : #7A1F1F;
+}
+
+#submitButton {
+    background-color : #3C5747;
+    border : none;
+    padding : 15px;
+    margin-top : 20px;
+    border-radius : 30px;
+    width : 150px;
+    height : 50px;
+    color : #D9FCE7;
+    font-weight : bold;
+    font-size : 15px;
+}
+
+#submitButton:hover {
+    background-color : #D9FCE7;
+    color : #1F0F0D;
+    border : 2px solid #1F0F0D;
+}
+
+#submitButton:disabled {
+    opacity : 0.6;
+    cursor : progress;
+}
+
+#linkedinInfo {
+    background-color : #D9FCE7;
+    width :400px;
+    height : 200px;
+    border-radius : 25px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+}
+
+
+#linkedinLogo {
+    height : 60px;
+    width : 60px;
+}
+
+p.linkedinText {
+    font-size : 20px;
+    padding-top : 20px;
+    font-weight : bold;
+}
+
+a.linkedinLink {
+    text-decoration : none;
+    color : black;
+    font-size : 25px;
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Experiences{% endblock %}
+
+{% block styles %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/experiences.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <h1>Relevant course work, capstone projects, and experiences</h1>
+    <div id = "carnegieMellon">
+        <h2>Carnegie Mellon University</h2>
+        <div class = "experienceSection">
+           <a href = "{{ url_for('stackBuilder')}}">
+                <div id = "specificExperience">  
+                    <img class = "experiencePhoto" id = "southFayetteLogo" src = "{{url_for('static', filename='images-webp/south-fayette-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of South Fayette High School">
+                    <p id = "type">Capstone Project</p>
+                    <p id = "title">Team South Fayette</p>
+                </div>
+            </a>
+             <a href = "{{ url_for('crossStitchWeb')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "crossStitch" src = "{{url_for('static', filename='images-webp/final-project-figma.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the cross stitch pattern website">
+                <p id = "type">Course Work</p>
+                <p id = "title">Cross Stitch Pattern Website</p>
+            </div>
+            </a>
+            <a href = "{{ url_for('ebikeDesign')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "crossStitch" src = "{{url_for('static', filename='images-webp/ebike-prototype-1.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the home screen for the ebike design">
+                <p id = "type">Course Work</p>
+                <p id = "title">eBike Deisgn</p>
+            </div>
+            </a>
+          
+            <a href = "{{ url_for('transformationalGames')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "transformationalGames" src = "{{url_for('static', filename='images-webp/game-cards.webp') }}" fetchpriority = "low" decoding = async alt = "example of game card created for class">
+                <p id = "type">Course Work</p>
+                <p id = "title">Transformational Game Design</p>
+            </div>
+            </a>
+        </div>
+
+    </div>
+        
+    <div id = "michiganTech">
+        <h2>Michigan Technological University</h2>
+        <div class = "experienceSection">
+            <a href = "{{ url_for('hideNew')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "hideLogo" src = "{{url_for('static', filename='images-webp/hide-logo.webp') }}" fetchpriority = "low" decoding = async alt = "Logo of HIDE enterprise">
+                <p id = "type">Capstone Project</p>
+                <p id = "title">HIDE Enterprise</p>
+            </div>
+            </a>
+            <a href = "{{ url_for('heptileApp')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "heptileApp" src = "{{url_for('static', filename='images-webp/michigan-heptile-tracking.webp') }}" fetchpriority = "low" decoding = async alt = "Mockup of the cross stitch pattern website">
+                <p id = "type">Course Work</p>
+                <p id = "title">Michigan Herptile Tracking App</p>
+            </div>
+            </a>
+            <a href = "{{ url_for('computerScienceResearch')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "modelerPhoto" src = "{{url_for('static', filename='images-webp/modeler-2.webp') }}" fetchpriority = "low" decoding = async alt = "example screen from design work for Modeler">
+                <p id = "type">Experience</p>
+                <p id = "title">Computer Science Education Research</p>
+            </div>
+            </a>
+            <a href = "{{ url_for('esports')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "esportsPhoto" src = "{{url_for('static', filename='images-webp/esports-banquet.webp') }}" fetchpriority = "low" decoding = async alt = "Katie and Katy at the Esports banquet, Kaite holding an award">
+                <p id = "type">Experience</p>
+                <p id = "title">Esports Statistician</p>
+            </div>
+            </a>
+            <a href = "{{ url_for('clubPresident')}}">
+            <div id = "specificExperience">
+                <img class = "experiencePhoto" id = "clubPhoto" src = "{{url_for('static', filename='images-webp/club-photo.webp') }}" fetchpriority = "low" decoding = async alt = "group photo of the Association of Psychology Students">
+                <p id = "type">Experience</p>
+                <p id = "title">Club President</p>
+            </div>
+            </a>
+        </div>
+    </div>
+{%endblock content %}

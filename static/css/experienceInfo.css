@@ -1,0 +1,147 @@
+div.wholePage {
+    display : flex;
+    flex-direction : column;
+}
+
+#aboveFold {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-evenly;
+    margin : 60px;
+    margin-bottom : 80px;
+    align-items : center;
+}
+
+img.aboveFoldPhoto {
+    border-radius : 30px;
+}
+
+div.leftFold {
+    display : flex;
+    flex-direction : column;
+    width : 700px;
+    margin-top : 50px;
+}
+
+#researchTitle {
+    width : 730px;
+}
+
+/*div.rightFold {
+     background-color : #D9FCE7;
+    padding-right : 40px;
+    padding-top : 40px;
+    border-radius : 50px;
+    height : 600px;
+}
+*/
+
+h1.title {
+    font-size : 68px;
+}
+
+h2.subtitle {
+    font-size : 40px;
+}
+
+p.experience {
+    font-size : 25px;
+}
+
+p.sectionHeader {
+    color :#D9FCE7;
+    font-size : 30px;
+    font-weight : bold;
+    margin-left : 250px;
+}
+
+div.section {
+    background-color :#D9FCE7;
+    height : 600px;
+    width : 1450px;
+    border-radius : 50px;
+    margin-left : 220px;
+    margin-bottom : 100px;
+    display : flex;
+    flex-direction : row;
+    align-items : center;
+    font-size : 20px;
+}
+
+#listSection {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-start;
+    height : 450px;
+    padding-top : 65px;
+}
+
+ul {
+    margin-left : 40px;
+}
+
+#gameDesignSection {
+    display : flex;
+    flex-direction : column;
+    align-items : flex-start;
+    height : 620px;
+    padding-top : 50px;
+}
+
+#schedulerDiv {
+    height : 720px;
+}
+
+#herptileSection {
+    font-size : 25px;
+    height : 500px;
+}
+
+#researchOverview {
+    height : 400px;
+    font-size : 25px;
+}
+
+#modelerDiv {
+    height : 850px;
+}
+
+div.modelerText {
+    display : flex;
+    flex-direction : column;
+}
+
+div.back {
+    display : flex;
+    flex-direction : row;
+    justify-content : flex-end;
+    height : 50px;
+    margin-right : 220px;
+}
+
+p.bodyText {
+    margin-left : 40px;
+    margin-right : 40px;
+    line-height : 1.7;
+}
+
+video {
+    margin-right : 40px;
+}
+
+#capstone1 {
+    margin-right : 40px;
+}
+
+#crossStitchText {
+    font-size : 24px;
+    margin-left : 45px;
+    margin-right : 45px;
+}
+
+div.resultPhotos {
+    height : 450px;
+    display : flex;
+    flex-direction : column;
+    justify-content : space-between;
+}
